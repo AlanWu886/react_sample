@@ -21,29 +21,25 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // setTimeout(()=>{
-    //   this.setState({
-    //     isLoading: false
-    //   })
-    // }, 1500)
-    this.setState({
-      isLoading: false
-    })
-
+    setTimeout(()=>{
+      this.setState({
+        isLoading: false
+      })
+    }, 500)
   }
 
   render() {
     return(
       <div style={this.style}>
-        <React.Fragment>
-          {this.state.isLoading ?
-            <div><LoadingPage /></div> :
-            <div>
-              <Header />
-              <Main />
-            </div>
-          }
-        </React.Fragment>
+
+        {this.state.isLoading ?
+          <div><LoadingPage /></div> :
+          <div>
+            <Header />
+            <Main />
+          </div>
+        }
+
       </div>
     )
   }

@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
-import Home from './Home'
-import Contact from './Contact'
+import { Row, Col } from 'react-bootstrap';
 
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
 
+
+import Menu from './Menu'
+import Cart from './Cart'
 class Main extends React.Component {
   constructor() {
     super()
@@ -35,16 +36,20 @@ class Main extends React.Component {
     console.log(this.state)
 
     return(
-      <div style = {this.style}>
 
-        <Router>
-          <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route to="/contact" component={Contact}></Route>
-          </Switch>
-        </Router>
+      <>
+        <div style={{margin:'0px', width:'100%'}}>
+          <Menu />
 
-      </div>
+        </div>
+        <div style = {this.style}>
+
+
+
+        </div>
+      </>
+
+
 
     )
   }
