@@ -11,14 +11,12 @@ class Cart extends React.Component {
     const cartIcon = <FontAwesome
       className="super-crazy-colors"
       name="shopping-cart"
-      size="2x"
       style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
     />
 
     const removeIcon = <FontAwesome
       className="super-crazy-colors"
       name="remove"
-      size="1x"
       style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
     />
 
@@ -36,7 +34,7 @@ class Cart extends React.Component {
         <DropdownButton alignRight id="cart" title={cartIcon}>
           <Dropdown.Header>Order Details</Dropdown.Header>
           <div style={{display: 'inline-flex', width:'100%', marginBottom:'3px'}}>
-            <Dropdown.Item disabled>Item11 x 10</Dropdown.Item>
+            <Dropdown.Item disabled>Item11 x 1012312412134123132qeweawd</Dropdown.Item>
             <Button size='sm' variant='danger' style={removeIconStyle}>{removeIcon}</Button>
           </div>
           <div style={{display: 'inline-flex', width:'100%', marginBottom:'3px'}}>

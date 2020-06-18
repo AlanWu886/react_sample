@@ -1,5 +1,6 @@
 import React from 'react'
-import {Card, CardDeck} from 'react-bootstrap'
+import {Card, CardDeck, Image, Row, Col} from 'react-bootstrap'
+import './ItemCard.css'
 class ItemCard extends React.Component {
   constructor() {
     super()
@@ -9,18 +10,21 @@ class ItemCard extends React.Component {
     return(
       <div>
         <CardDeck>
-          <Card>
-            <Card.Img variant="top" src="./src/productImage/SHBELSX-TY.jpg" />
-            <Card.Body>
-              <Card.Title>Card title</Card.Title>
-              <Card.Text>
-                This is a wider card with supporting text below as a natural lead-in to
-                additional content. This content is a little bit longer.
-              </Card.Text>
+          <Card className='card-body' bg='dark' text='white'>
+
+
+            <Card.Body >
+              <Row>
+                <Image className='product-image' src={require('./productImage/SHBELSX-TY.jpg')} />
+                <Col>
+                  <Card.Title>Card title</Card.Title>
+                  <Card.Text>
+                    This is a wider card with supporting text below as a natural lead-in to
+                    additional content. This content is a little bit longer.
+                  </Card.Text>
+                </Col>
+              </Row>
             </Card.Body>
-            <Card.Footer>
-              <small className="text-muted">Last updated 3 mins ago</small>
-            </Card.Footer>
           </Card>
         </CardDeck>
       </div>

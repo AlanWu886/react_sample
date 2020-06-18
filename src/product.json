@@ -7,7 +7,6 @@
       "id": "0",
       "name": "POWER CUSHION 65 X 2 WIDE",
       "description": "Intermediate to advanced model for a comfortable fit.",
-      "color": "White / Black",
       "size": "US 9",
       "price": "$39.99",
       "memo": "this is memo",
@@ -15,19 +14,56 @@
         {
 
         }
-      ]
+      ],
+      "color":{
+        "Black/White":{"price":"$39.99", "size":{
+            "US 9": {
+              "stock":"13"
+            },
+            "US 10": {
+              "stock": "3"
+            }
+          }
+        },
+        "Red/White":{"price":"$42.99", "size":{
+            "US 9": {
+              "stock": "15"
+            },
+            "US 10": {
+              "stock": "36"
+            }
+          }
+        }
+      }
     },
     {
       "id": "1",
       "name": "POWER CUSHION ECLIPSION X",
       "description": "Newly designed upper provides remarkably improved fit and stability",
-      "color": "Turquoise/Yellow",
-      "size": "US 9",
-      "price": "$59.99",
       "memo": "this is memo",
       "image": [
 
-      ]
+      ],
+      "color":{
+        "Black/White":{"price":"$39.99", "size":{
+            "US 9": {
+              "stock":"13"
+            },
+            "US 10": {
+              "stock": "3"
+            }
+          }
+        },
+        "Red/White":{"price":"$42.99", "size":{
+            "US 9": {
+              "stock": "15"
+            },
+            "US 10": {
+              "stock": "36"
+            }
+          }
+        }
+      }
     }
   ],
   "bags": [],

@@ -34,16 +34,16 @@ class App extends React.Component {
   render() {
     return(
       <div style={this.style}>
-
-        {this.state.isLoading ?
-          <div><LoadingPage /></div> :
-          <Router>
-            <Header />
-            <Menu />
-            <Main />
-          </Router>
-        }
-
+        <React.Fragment>
+          {this.state.isLoading ?
+            <div><LoadingPage /></div> :
+            <Router>
+              <Header />
+              <Menu />
+              <Main />
+            </Router>
+          }
+        </React.Fragment>
       </div>
     )
   }

@@ -7,7 +7,7 @@ import {Row, Col} from 'react-bootstrap'
 class Footwear extends React.Component {
   constructor() {
     super()
-    
+
   }
 
   render() {
@@ -17,9 +17,8 @@ class Footwear extends React.Component {
       <div>
         <h3>Footwear</h3>
         <Row>
-          <Col sm={4}><ItemCard /></Col>
-          <Col sm={4}><ItemCard /></Col>
-          <Col sm={4}><ItemCard /></Col>
+          <Col sm={12}><ItemCard /></Col>
+
         </Row>
 
       </div>

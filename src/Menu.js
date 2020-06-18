@@ -15,24 +15,11 @@ class Menu extends React.Component {
   constructor() {
     super()
     this.state = {
-      menuOptions : [
-        {name:'home', path: ''},
-        {name:'racquets', path: ''},
-        {name:'shuttlecocks', path: ''},
-        {name:'string', path: ''},
-        {name:'footwear', path: ''},
-        {name:'bags', path: ''},
-        {name:'accessories', path: ''},
-        {name:'service', path: ''},
-        {name:'contact', path: ''},
-        {name:'about', path: ''},
-
-      ],
       styleActive: {fontWeight:'bold',
                     color: '#61dafb',
 
                    },
-      activeNavi: 'home'
+      activeNavi: null
     }
     this.activePage = this.activePage.bind(this)
   }
@@ -43,7 +30,7 @@ class Menu extends React.Component {
   }
 
   activePage(name){
-    this.setState(prevState=>{
+    this.setState(()=>{
       return{
         activeNavi:name
       }
@@ -52,7 +39,20 @@ class Menu extends React.Component {
   }
 
   render() {
-    const menuComponents = this.state.menuOptions.map(m =>
+    const menuOptions = [
+      {name:'home', path: ''},
+      {name:'racquets', path: ''},
+      {name:'shuttlecocks', path: ''},
+      {name:'string', path: ''},
+      {name:'footwear', path: ''},
+      {name:'bags', path: ''},
+      {name:'accessories', path: ''},
+      {name:'service', path: ''},
+      {name:'contact', path: ''},
+      {name:'about', path: ''},
+    ]
+    
+    const menuComponents = menuOptions.map(m =>
       <Nav.Item key={m.name} >
         <Button className='navi-btn' variant='dark' size='sm'>
           <NavLink className='navi' onClick={() => this.activePage(m.name)} to={'/' + m.name} activeStyle={this.state.styleActive}>

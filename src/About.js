@@ -8,7 +8,7 @@ class About extends React.Component {
   render(){
     return(
       <div style={this.style}>
-        <p><h2>Supreme Sports Supply</h2></p>
+        <h2>Supreme Sports Supply</h2>
         <h4>
           <p>35+ years serving badminton fan in USA.</p>
           <p><b>YONEX, Aeroplane, Victor</b> Authorized Distributor.</p>

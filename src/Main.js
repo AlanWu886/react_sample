@@ -3,7 +3,7 @@ import {Container, Row, Col } from 'react-bootstrap';
 import {Switch, Route} from 'react-router-dom'
 import {CSSTransition, TransitionGroup, } from 'react-transition-group';
 
-import Menu from './Menu'
+
 import Cart from './Cart'
 import Home from './Home'
 import Footwear from './Footwear'
@@ -58,8 +58,8 @@ class Main extends React.Component {
                   </Switch>
                 </CSSTransition>
               </TransitionGroup>
-            )}/>
-
+            )}>
+            </Route>
           </Container>
         </div>
       </>
