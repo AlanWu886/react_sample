@@ -1,10 +1,13 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter as Router} from 'react-router-dom'
+
 
 import LoadingPage from './LoadingPage'
 import Header from './Header'
 import Main from './Main'
+import Menu from './Menu'
 
 class App extends React.Component {
   constructor() {
@@ -34,10 +37,11 @@ class App extends React.Component {
 
         {this.state.isLoading ?
           <div><LoadingPage /></div> :
-          <div>
+          <Router>
             <Header />
+            <Menu />
             <Main />
-          </div>
+          </Router>
         }
 
       </div>

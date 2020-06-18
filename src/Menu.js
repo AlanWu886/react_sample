@@ -1,8 +1,10 @@
 import React from 'react'
-import { Button,  Navbar, Nav, Form, FormControl, Row, Col } from 'react-bootstrap';
+import { Button,  Navbar, Nav, Form, FormControl, Container, Row, Col } from 'react-bootstrap';
 import {BrowserRouter as Router, Switch, Route, NavLink} from 'react-router-dom'
+import ReactCSSTransitionGroup from 'react-transition-group'
 
 import Home from './Home'
+import Footwear from './Footwear'
 import Contact from './Contact'
 import About from './About'
 import Cart from './Cart'
@@ -64,25 +66,20 @@ class Menu extends React.Component {
 
     return(
       <div style={{margin: '10px 0 10px 0'}}>
-        <Router>
-          <Navbar bg="dark" variant="dark" expand="lg" style={{opacity: '0.85'}}>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="mr-auto" variant='pills' >
-                {menuComponents}
-              </Nav>
-            </Navbar.Collapse>
 
-          </Navbar>
-          <span style={{float:'right', margin:'10px', opacity: '1'}}>
-            <Cart />
-          </span>
-          <Switch>
-            <Route exact path="/home" component={Home}/>
-            <Route path="/contact" component={Contact}></Route>
-            <Route path="/about" component={About}></Route>
-          </Switch>
-        </Router>
+        <Navbar bg="dark" variant="dark" expand="lg" style={{opacity: '0.85'}}>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto" variant='pills' >
+              {menuComponents}
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+        <span style={{float:'right', margin:'10px', opacity: '1'}}>
+          <Cart />
+        </span>
+
+
 
 
       </div>

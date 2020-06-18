@@ -1,10 +1,17 @@
 import React, {Component} from 'react'
-import { Row, Col } from 'react-bootstrap';
-
-
+import {Container, Row, Col } from 'react-bootstrap';
+import {Switch, Route} from 'react-router-dom'
+import {CSSTransition, TransitionGroup, } from 'react-transition-group';
 
 import Menu from './Menu'
 import Cart from './Cart'
+import Home from './Home'
+import Footwear from './Footwear'
+import Contact from './Contact'
+import About from './About'
+
+import './Main.css'
+
 class Main extends React.Component {
   constructor() {
     super()
@@ -39,13 +46,21 @@ class Main extends React.Component {
 
       <>
         <div style={{margin:'0px', width:'100%'}}>
-          <Menu />
+          <Container>
+            <Route render={({location})=>(
+              <TransitionGroup>
+                <CSSTransition key={location.key} timeout={300} classNames="fade">
+                  <Switch location={location}>
+                    <Route exact path="/home" component={Home}/>
+                    <Route path="/footwear" component={Footwear}></Route>
+                    <Route path="/contact" component={Contact}></Route>
+                    <Route path="/about" component={About}></Route>
+                  </Switch>
+                </CSSTransition>
+              </TransitionGroup>
+            )}/>
 
-        </div>
-        <div style = {this.style}>
-
-
-
+          </Container>
         </div>
       </>
 
