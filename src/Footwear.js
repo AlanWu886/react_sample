@@ -5,22 +5,30 @@ import {Row, Col} from 'react-bootstrap'
 
 
 class Footwear extends React.Component {
-  constructor() {
-    super()
-
+  constructor(props) {
+    super(props)
+    this.state = {
+      orderList:{
+        id: null,
+        name: null,
+        color: null,
+        size: null,
+        quantity: null,
+        contact_name: null,
+        contact_phone: null,
+        contact_email: null
+      },
+      products: this.props.productList
+    }
   }
 
   render() {
-    const products = require('./product.json')
-    console.log(products);
     return(
       <div>
         <h3>Footwear</h3>
         <Row>
-          <Col sm={12}><ItemCard /></Col>
-
+          <Col sm={12}><ItemCard item={this.state.products[0]}/></Col>
         </Row>
-
       </div>
     )
   }

@@ -12,7 +12,7 @@
       "memo": "this is memo",
       "image": [
         {
-
+          "path":"./productImage/SHBELSX-TY.jpg"
         }
       ],
       "color":{

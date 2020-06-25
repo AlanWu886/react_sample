@@ -31,6 +31,10 @@ class App extends React.Component {
     }, 500)
   }
 
+  menuSelected=(menu_name)=>{
+        console.log(menu_name);
+  }
+
   render() {
     return(
       <div style={this.style}>
@@ -39,7 +43,7 @@ class App extends React.Component {
             <div><LoadingPage /></div> :
             <Router>
               <Header />
-              <Menu />
+              <Menu functionCallFromParent={this.menuSelected.bind(this)}/>
               <Main />
             </Router>
           }

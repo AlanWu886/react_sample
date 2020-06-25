@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button,  Navbar, Nav, Form, FormControl, Container, Row, Col } from 'react-bootstrap';
-import {BrowserRouter as Router, Switch, Route, NavLink} from 'react-router-dom'
+import {Button,  Navbar, Nav} from 'react-bootstrap';
+import {NavLink} from 'react-router-dom'
 import ReactCSSTransitionGroup from 'react-transition-group'
 
 import Home from './Home'
@@ -15,10 +15,10 @@ class Menu extends React.Component {
   constructor() {
     super()
     this.state = {
-      styleActive: {fontWeight:'bold',
-                    color: '#61dafb',
-
-                   },
+      styleActive: {
+        fontWeight:'bold',
+        color: '#61dafb',
+      },
       activeNavi: null
     }
     this.activePage = this.activePage.bind(this)
@@ -38,6 +38,11 @@ class Menu extends React.Component {
     console.log(this.state.activeNavi);
   }
 
+  childFunction=(name)=>{
+
+        this.props.functionCallFromParent(name);
+  }
+
   render() {
     const menuOptions = [
       {name:'home', path: ''},
@@ -51,11 +56,11 @@ class Menu extends React.Component {
       {name:'contact', path: ''},
       {name:'about', path: ''},
     ]
-    
+
     const menuComponents = menuOptions.map(m =>
       <Nav.Item key={m.name} >
         <Button className='navi-btn' variant='dark' size='sm'>
-          <NavLink className='navi' onClick={() => this.activePage(m.name)} to={'/' + m.name} activeStyle={this.state.styleActive}>
+          <NavLink className='navi' onClick={this.childFunction.bind(this)} to={'/' + m.name} activeStyle={this.state.styleActive}>
             {this.capitalize(m.name)}
           </NavLink>
         </Button>
