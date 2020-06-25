@@ -1,6 +1,7 @@
 import React from 'react'
 import {Card, CardDeck, Image, Row, Col, Dropdown, DropdownButton, Form} from 'react-bootstrap'
 import './ItemCard.css'
+
 class ItemCard extends React.Component {
   constructor(props) {
     super(props)
@@ -36,12 +37,7 @@ class ItemCard extends React.Component {
       ()=>{
         if(this.state.order.color) {
           console.log(this.state.order);
-          let selectedColor = this.state.item.color[this.state.order.color];
-          console.log(Object.keys(selectedColor.size));
-          this.sizeOptions = Object.keys(selectedColor.size).map(size =>
-            <option key={size} value={size}>{size}</option>
-          )
-          console.log(this.sizeOptions);
+
         }
 
       }
@@ -49,15 +45,13 @@ class ItemCard extends React.Component {
   }
 
   render() {
-    console.log(this.sizeOptions);
-    let sizeOptions = ()=>{
-      if(this.state.order.color){
-
-      }else{
-        return null
-      }
-    }
+    const selectedColor = this.state.item.color[this.state.order.color]
+    const sizeOptions = this.state.item.color[this.state.order.color]?
+    Object.keys(selectedColor.size).map(size =>
+      <option key= {size} value={size}>{size}</option>
+    ) : null
     console.log(sizeOptions);
+
     return(
       <div>
         <CardDeck>
@@ -87,7 +81,7 @@ class ItemCard extends React.Component {
                         </Form.Label>
                         <Form.Control size="sm" as="select" placeholder="Choose..." >
                           <option value={null}>Choose...</option>
-                          {this.sizeOptions}
+                          {sizeOptions}
                         </Form.Control>
                       </Form.Group>
                     </Form>
