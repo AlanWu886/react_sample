@@ -7,6 +7,7 @@ import {CSSTransition, TransitionGroup, } from 'react-transition-group';
 import Cart from './Cart'
 import Home from './Home'
 import Footwear from './Footwear'
+import Products from './Products'
 import Contact from './Contact'
 import About from './About'
 
@@ -17,7 +18,7 @@ class Main extends React.Component {
     super()
     this.state = {
       count: 3,
-      products: require('./product.json')
+      products: require('./product.json'),
     }
     console.log(this.state.products);
 
@@ -43,7 +44,8 @@ class Main extends React.Component {
 
   render() {
     console.log(this.state)
-
+    const currentPage = window.location.pathname.substring(1)
+    console.log(currentPage);
     return(
 
       <>
@@ -54,7 +56,8 @@ class Main extends React.Component {
                 <CSSTransition key={location.key} timeout={300} classNames="fade">
                   <Switch location={location}>
                     <Route exact path="/home" component={Home}/>
-                    <Route path="/footwear" render={(props) => <Footwear {...props} productList={this.state.products.footwear} />}></Route>
+                    <Route path="/footwear" render={(props) => <Products {...props} productList={this.state.products[currentPage]} title={currentPage}/>}></Route>
+                    <Route path="/bags" render={(props) => <Products {...props} productList={this.state.products[currentPage]} />}></Route>
                     <Route path="/product" component={Contact}></Route>
                     <Route path="/contact" component={Contact}></Route>
                     <Route path="/about" component={About}></Route>

@@ -33,9 +33,12 @@ class Menu extends React.Component {
     this.setState(()=>{
       return{
         activeNavi:name
+      },
+      ()=>{
+        console.log(this.state.activeNavi);
       }
     })
-    console.log(this.state.activeNavi);
+
   }
 
   childFunction=(name)=>{
@@ -60,7 +63,7 @@ class Menu extends React.Component {
     const menuComponents = menuOptions.map(m =>
       <Nav.Item key={m.name} >
         <Button className='navi-btn' variant='dark' size='sm'>
-          <NavLink className='navi' onClick={this.childFunction.bind(this)} to={'/' + m.name} activeStyle={this.state.styleActive}>
+          <NavLink className='navi' onClick={this.childFunction.bind(this, m.name)} to={'/' + m.name} activeStyle={this.state.styleActive}>
             {this.capitalize(m.name)}
           </NavLink>
         </Button>

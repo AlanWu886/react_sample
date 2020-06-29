@@ -1,6 +1,7 @@
 import React from 'react'
-import {Card, CardDeck, Image, Row, Col, Dropdown, DropdownButton, Form} from 'react-bootstrap'
+import {Card, CardDeck, Image, Row, Col, Dropdown, DropdownButton, Form, Button} from 'react-bootstrap'
 import './ItemCard.css'
+
 
 class ItemCard extends React.Component {
   constructor(props) {
@@ -8,49 +9,87 @@ class ItemCard extends React.Component {
     this.state = {
       item: this.props.item,
       order:{
-        id: null,
-        name: null,
-        color: null,
-        size: null,
-        quantity: null
+        id: "",
+        name: "",
+        color: "",
+        size: "",
+        amount: ""
       },
       color:null,
     }
     this.colorOptions = Object.keys(this.state.item.color).map(color =>
       <option key= {color} value={color}>{color}</option>
     )
-    this.sizeOptions = null
-    console.log(this.colorOptions);
-    console.log(this.state.item.color);
-    this.setColor = this.setColor.bind(this)
+
+    this.sizeOptions = this.state.item.color[this.state.order.color]?
+    Object.keys(this.state.item.color[this.state.order.color]["size"]).map(size =>
+      <option key= {size} value={size}>{size}</option>
+    ) : null
+
+    this.labelWidth = {
+      minWidth: '60px'
+    }
+
+    this.setOrder = this.setOrder.bind(this)
+    this.resetOrder = this.resetOrder.bind(this)
   }
 
-  setColor(e){
+  setOrder(e){
     e.persist();
+    console.log(e.target.id);
     this.setState(
       prevState => {
         let order = Object.assign({}, prevState.order);
-        order.color = e.target.value
-        return{ order }
+        console.log(order[e.target.id]);
+        if(order.color && e.target.id === "color") {
+          console.log(Object.keys(order));
+          Object.keys(order).map(key => order[key]="")
+          console.log(order);
+          order[e.target.id] = e.target.value
+          return{ order }
+        } else {
+          order[e.target.id] = e.target.value
+          return{ order }
+        }
       }
       ,
       ()=>{
-        if(this.state.order.color) {
-          console.log(this.state.order);
-
-        }
-
+        console.log(this.state.order);
       }
     );
   }
 
+  resetOrder(){
+    console.log("reset");
+    this.setState(
+      prevState => {
+        let order = Object.assign({}, prevState.order);
+        Object.keys(order).map(key => order[key]="")
+        return { order }
+      },
+      ()=>{
+        console.log(this.state.order);
+      }
+    )
+  }
+
   render() {
-    const selectedColor = this.state.item.color[this.state.order.color]
+    const colorOptions = Object.keys(this.state.item.color).map(color =>
+      <option key={color} value={color}>{color}</option>
+    )
+    const colorOption = []
+    Object.keys(this.state.item.color).map(color =>
+      colorOption.push({value:color, label:color})
+    )
+    console.log(colorOption);
+
     const sizeOptions = this.state.item.color[this.state.order.color]?
-    Object.keys(selectedColor.size).map(size =>
+    Object.keys(this.state.item.color[this.state.order.color]["size"]).map(size =>
       <option key= {size} value={size}>{size}</option>
     ) : null
     console.log(sizeOptions);
+
+
 
     return(
       <div>
@@ -62,33 +101,60 @@ class ItemCard extends React.Component {
                 <Col>
                   <Card.Title>{this.state.item.name}</Card.Title>
                   <Card.Text>{this.state.item.description.repeat(10)}</Card.Text>
-                  <Row>
-                    <Form inline>
-                      <Form.Group>
-                        <Form.Label className="ml-2 mr-2" htmlFor="inlineFormCustomSelectPref">
-                          Color
-                        </Form.Label>
-                        <Form.Control size="sm" as="select"
-                        value={this.state.order.color}
-                        onChange={this.setColor} >
-                          <option value={null}>Choose...</option>
-                          {this.colorOptions}
-                        </Form.Control>
-                      </Form.Group>
-                      <Form.Group>
-                        <Form.Label className="ml-4 mr-2" htmlFor="inlineFormCustomSelectPref">
-                          Size
-                        </Form.Label>
-                        <Form.Control size="sm" as="select" placeholder="Choose..." >
-                          <option value={null}>Choose...</option>
-                          {sizeOptions}
-                        </Form.Control>
-                      </Form.Group>
-                    </Form>
+                  <Row style={{verticalAlign:'bottom'}}>
+                    <Card.Footer>
+                      <Form inline>
+                        <Form.Group>
+                          <Form.Label style={this.labelWidth} htmlFor="inlineFormCustomSelectPref">
+                            Color
+                          </Form.Label>
+                          <Form.Control size="sm" as="select"
+                          id="color"
+                          className="ml-2 mr-4"
+                          value={this.state.order.color}
+                          onChange={this.setOrder} >
+                            <option key="" value="">Choose...</option>
+                            {colorOptions}
+                          </Form.Control>
+                        </Form.Group>
+
+                        <Form.Group>
+                          <Form.Label style={this.labelWidth} htmlFor="inlineFormCustomSelectPref">
+                            Size
+                          </Form.Label>
+                          <Form.Control size="sm" as="select"
+                          id="size"
+                          className="ml-2 mr-4"
+                          value={this.state.order.size}
+                          onChange={this.setOrder}>
+                            <option key="" value="">Choose...</option>
+                            {sizeOptions}
+                          </Form.Control>
+                        </Form.Group>
+
+                        <Form.Group>
+                          <Form.Label style={this.labelWidth} htmlFor="inlineFormCustomSelectPref">
+                            Amount
+                          </Form.Label>
+                          <Form.Control size="sm" as="select"
+                          id="amount"
+                          custom
+                          className="ml-2 mr-4"
+                          value={this.state.order.amount}
+                          onChange={this.setOrder}>
+                            <option key="" value="">0</option>
+
+                          </Form.Control>
+                        </Form.Group>
+
+                        <Button size="sm" onClick={this.resetOrder}>Reset</Button>
+                      </Form>
+                    </Card.Footer>
                   </Row>
                 </Col>
               </Row>
             </Card.Body>
+
           </Card>
         </CardDeck>
       </div>

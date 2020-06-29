@@ -42,7 +42,9 @@
       "description": "Newly designed upper provides remarkably improved fit and stability",
       "memo": "this is memo",
       "image": [
-
+        {
+          "path":"./productImage/SHBELSX-TY.jpg"
+        }
       ],
       "color":{
         "Black/White":{"price":"$39.99", "size":{

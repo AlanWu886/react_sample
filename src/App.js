@@ -14,7 +14,8 @@ class App extends React.Component {
     super()
 
     this.state = {
-      isLoading: true
+      isLoading: true,
+      selectedMenu: ''
     }
 
     this.style = {
@@ -32,7 +33,11 @@ class App extends React.Component {
   }
 
   menuSelected=(menu_name)=>{
-        console.log(menu_name);
+        this.setState({selectedMenu: menu_name},
+          ()=>{
+            console.log(this.state.selectedMenu);
+          }
+        )
   }
 
   render() {
