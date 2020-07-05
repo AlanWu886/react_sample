@@ -10,6 +10,7 @@ import Footwear from './Footwear'
 import Products from './Products'
 import Contact from './Contact'
 import About from './About'
+import Footer from './Footer'
 
 import './Main.css'
 
@@ -49,7 +50,7 @@ class Main extends React.Component {
     return(
 
       <>
-        <div style={{margin:'0px', width:'100%'}}>
+        <div style={{margin:'-30px 0px 0px 0px', width:'100%', flex: "1 0 auto"}}>
           <Container>
             <Route render={({location})=>(
               <TransitionGroup>
@@ -58,7 +59,6 @@ class Main extends React.Component {
                     <Route exact path="/home" component={Home}/>
                     <Route path="/footwear" render={(props) => <Products {...props} productList={this.state.products[currentPage]} title={currentPage}/>}></Route>
                     <Route path="/bags" render={(props) => <Products {...props} productList={this.state.products[currentPage]} />}></Route>
-                    <Route path="/product" component={Contact}></Route>
                     <Route path="/contact" component={Contact}></Route>
                     <Route path="/about" component={About}></Route>
                   </Switch>
@@ -66,7 +66,9 @@ class Main extends React.Component {
               </TransitionGroup>
             )}>
             </Route>
+
           </Container>
+
         </div>
       </>
 

@@ -1,22 +1,22 @@
 body {
-  margin: 0;
-  display: inline-block;
-  width: 100%;
-  height: 100vh;
+
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* background-color: blue; */
-  background-image: url(./badminton_bw.jpg);
-  -webkit-background-size: ;
+  /* background-image: url(./badminton_bw.jpg); */
+  background: url(./badminton_bw.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-clip: border-box;
-  color: #adb5bd;
+
+  color: #cce0ff;
 
 }
+
+#map {
+        height: 100%;
+      }

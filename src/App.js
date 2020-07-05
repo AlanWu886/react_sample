@@ -8,6 +8,7 @@ import LoadingPage from './LoadingPage'
 import Header from './Header'
 import Main from './Main'
 import Menu from './Menu'
+import Footer from './Footer'
 
 class App extends React.Component {
   constructor() {
@@ -20,6 +21,8 @@ class App extends React.Component {
 
     this.style = {
       height: '100vh',
+      display: "flex",
+      flexDirection: "column"
 
     }
   }
@@ -50,9 +53,11 @@ class App extends React.Component {
               <Header />
               <Menu functionCallFromParent={this.menuSelected.bind(this)}/>
               <Main />
+              <Footer />
             </Router>
           }
         </React.Fragment>
+
       </div>
     )
   }

@@ -77,11 +77,6 @@ class ItemCard extends React.Component {
     const colorOptions = Object.keys(this.state.item.color).map(color =>
       <option key={color} value={color}>{color}</option>
     )
-    const colorOption = []
-    Object.keys(this.state.item.color).map(color =>
-      colorOption.push({value:color, label:color})
-    )
-    console.log(colorOption);
 
     const sizeOptions = this.state.item.color[this.state.order.color]?
     Object.keys(this.state.item.color[this.state.order.color]["size"]).map(size =>
@@ -89,7 +84,9 @@ class ItemCard extends React.Component {
     ) : null
     console.log(sizeOptions);
 
-
+    var amountOptions = Array.from(Array(21), (_, i) => i).map(
+      value=> <option key= {value} value={value}>{value}</option>
+    )
 
     return(
       <div>
@@ -142,7 +139,7 @@ class ItemCard extends React.Component {
                           className="ml-2 mr-4"
                           value={this.state.order.amount}
                           onChange={this.setOrder}>
-                            <option key="" value="">0</option>
+                            {amountOptions}
 
                           </Form.Control>
                         </Form.Group>

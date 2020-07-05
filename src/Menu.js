@@ -75,7 +75,7 @@ class Menu extends React.Component {
     return(
       <div style={{margin: '10px 0 10px 0'}}>
 
-        <Navbar bg="dark" variant="dark" expand="lg" style={{opacity: '0.85'}}>
+        <Navbar bg="dark" variant="dark" expand="md" style={{opacity: '0.85'}}>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto" variant='pills' >
