@@ -1,5 +1,6 @@
 import React from 'react'
-import {Card, CardDeck, Image, Row, Col, Dropdown, DropdownButton, Form, Button} from 'react-bootstrap'
+import {Card, CardDeck, Image, Row, Col, Dropdown, DropdownButton, Form, Button, Modal, Carousel} from 'react-bootstrap'
+import FontAwesome from 'react-fontawesome'
 import './ItemCard.css'
 
 
@@ -16,6 +17,7 @@ class ItemCard extends React.Component {
         amount: ""
       },
       color:null,
+      showModal:false
     }
     this.colorOptions = Object.keys(this.state.item.color).map(color =>
       <option key= {color} value={color}>{color}</option>
@@ -32,7 +34,30 @@ class ItemCard extends React.Component {
 
     this.setOrder = this.setOrder.bind(this)
     this.resetOrder = this.resetOrder.bind(this)
+    this.showImg = this.showImg.bind(this)
+    this.closeImg = this.closeImg.bind(this)
   }
+
+  showImg(){
+    this.setState(
+      prevState=> {
+        return{showModal:true}
+      }, ()=>{
+        console.log(this.state.showModal);
+      }
+    )
+  }
+
+  closeImg(){
+    this.setState(
+      prevState=> {
+        return{showModal:false}
+      }, ()=>{
+        console.log(this.state.showModal);
+      }
+    )
+  }
+
 
   setOrder(e){
     e.persist();
@@ -84,8 +109,28 @@ class ItemCard extends React.Component {
     ) : null
     console.log(sizeOptions);
 
-    var amountOptions = Array.from(Array(21), (_, i) => i).map(
+    const amountOptions = Array.from(Array(21), (_, i) => i).map(
       value=> <option key= {value} value={value}>{value}</option>
+    )
+
+    const zoomIcon = <FontAwesome
+      className="super-crazy-colors"
+      name="search"
+      size="lg"
+      style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
+    />
+
+    const carouselImgs = this.state.item.image.map(img=>
+      <Carousel.Item key={img.path}>
+        <img
+          className="d-block w-100"
+          src={require(`${img.path}`)}
+          alt="IMG"
+        />
+        <Carousel.Caption>
+          
+        </Carousel.Caption>
+      </Carousel.Item>
     )
 
     return(
@@ -94,12 +139,22 @@ class ItemCard extends React.Component {
           <Card className='card-body' bg='dark' text='white'>
             <Card.Body >
               <Row>
-                <Image className='product-image' src={require(`${this.state.item.image[0].path}`)} />
+
+                <Image style={{ cursor: "zoom-in" }} onClick={()=>this.showImg()} className='product-image' src={require(`${this.state.item.image[0].path}`)} />
+                <Modal centered show={this.state.showModal} onHide={()=>this.closeImg()} >
+
+                  <Modal.Body style={{backgroundColor:"lightslategrey"}}>
+                    <Carousel fade interval="25000" >
+                      {carouselImgs}
+                    </Carousel>
+                  </Modal.Body>
+
+                </Modal>
                 <Col>
-                  <Card.Title>{this.state.item.name}</Card.Title>
+                  <Card.Title >{this.state.item.name}</Card.Title>
                   <Card.Text>{this.state.item.description.repeat(10)}</Card.Text>
                   <Row style={{verticalAlign:'bottom'}}>
-                    <Card.Footer>
+                    <Card.Footer fluid>
                       <Form inline>
                         <Form.Group>
                           <Form.Label style={this.labelWidth} htmlFor="inlineFormCustomSelectPref">

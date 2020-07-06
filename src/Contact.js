@@ -40,8 +40,8 @@ class Contact extends React.Component {
       <h3>Contact</h3>
         <Row>
 
-          <Col md={{span:5, offset:1}}>
-            <Row>
+          <Col lg>
+            <Row style={{marginTop:"30px", justifyContent:"center"}}>
               <Card className="mb-1 ml-2 mr-2" style={cardStyle} >
 
                 <Card.Body>
@@ -53,7 +53,7 @@ class Contact extends React.Component {
                 </Card.Body>
               </Card>
             </Row>
-            <Row style={{marginTop:"30px"}}>
+            <Row style={{marginTop:"30px", justifyContent:"center"}}>
               <Card className="mb-2 ml-2 mr-2" style={cardStyle} >
 
                 <Card.Body>
@@ -67,7 +67,7 @@ class Contact extends React.Component {
 
             </Row>
           </Col>
-          <Col >
+          <Col lg style={{marginTop:"30px", textAlign:"-webkit-center"}}>
           <Card className="mb-2 ml-2 mr-2" style={{width: "450px", background:"none", textAlign:"center", border:"0px", fontSize:"18px"}} >
 
             <Card.Body>

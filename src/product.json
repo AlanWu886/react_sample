@@ -13,6 +13,12 @@
       "image": [
         {
           "path":"./productImage/SHBELSX-TY.jpg"
+        },
+        {
+          "path":"./productImage/SHBELSX-TY-Sole.jpg"
+        },
+        {
+          "path":"./productImage/SHBELSX-TY-2.jpg"
         }
       ],
       "color":{
