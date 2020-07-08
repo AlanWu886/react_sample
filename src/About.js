@@ -10,7 +10,7 @@ class About extends React.Component {
     return(
       <div >
         <Row style={{textAlign:"center"}}><Col><Image style={{width:"600px", height:"auto"}} src={require("./ronney.jpg")} roundedCircle/></Col></Row>
-        <Row style={{textAlign:"center", marginTop:"40px"}}>
+        <Row style={{textAlign:"center", marginTop:"20px"}}>
           <Col>
             <h2>Supreme Sports Supply</h2>
 

@@ -5,7 +5,7 @@ import React from 'react';
 
 function Footer() {
   const footerStyle = {
-    marginBottom:"10px",
+    margin:"20px",
     flexShrink:"0",
     prosition:"relative",
     textAlign:"center"
@@ -20,7 +20,7 @@ function Footer() {
   return (
 
     <div style={footerStyle}>
-      Privacy Policy - We do not keep your private information. We do not use cookie to track you.
+      Privacy Policy - We do not keep your private information on this website. We do not use cookie to track you.
       < br/>Copyright © 2020 Supreme Sports Supply . All rights reserved
     </div>
 

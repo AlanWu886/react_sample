@@ -10,7 +10,7 @@ class ItemCard extends React.Component {
     this.state = {
       item: this.props.item,
       order:{
-        id: "",
+        id: this.props.item.id,
         name: "",
         color: "",
         size: "",
@@ -58,7 +58,6 @@ class ItemCard extends React.Component {
     )
   }
 
-
   setOrder(e){
     e.persist();
     console.log(e.target.id);
@@ -90,6 +89,7 @@ class ItemCard extends React.Component {
       prevState => {
         let order = Object.assign({}, prevState.order);
         Object.keys(order).map(key => order[key]="")
+        order.id=this.props.item.id
         return { order }
       },
       ()=>{
@@ -128,7 +128,7 @@ class ItemCard extends React.Component {
           alt="IMG"
         />
         <Carousel.Caption>
-          
+
         </Carousel.Caption>
       </Carousel.Item>
     )
@@ -154,8 +154,8 @@ class ItemCard extends React.Component {
                   <Card.Title >{this.state.item.name}</Card.Title>
                   <Card.Text>{this.state.item.description.repeat(10)}</Card.Text>
                   <Row style={{verticalAlign:'bottom'}}>
-                    <Card.Footer fluid>
-                      <Form inline>
+                    <Card.Footer style={{width:"100%"}}>
+                      <Form inline style={{float:"right"}}>
                         <Form.Group>
                           <Form.Label style={this.labelWidth} htmlFor="inlineFormCustomSelectPref">
                             Color
@@ -198,15 +198,17 @@ class ItemCard extends React.Component {
 
                           </Form.Control>
                         </Form.Group>
-
-                        <Button size="sm" onClick={this.resetOrder}>Reset</Button>
+                        <span>
+                          <Button size="sm" onClick={this.resetOrder} variant="warning">Reset</Button>
+                          <Button size="sm" style={{marginLeft:"5px"}}>Add to Cart</Button>
+                        </span>
                       </Form>
+
                     </Card.Footer>
                   </Row>
                 </Col>
               </Row>
             </Card.Body>
-
           </Card>
         </CardDeck>
       </div>
