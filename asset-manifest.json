@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/react_sample/static/css/main.41c75463.chunk.css",
+    "main.js": "/react_sample/static/js/main.b9fa23b4.chunk.js",
+    "main.js.map": "/react_sample/static/js/main.b9fa23b4.chunk.js.map",
+    "runtime-main.js": "/react_sample/static/js/runtime-main.4e9da1dc.js",
+    "runtime-main.js.map": "/react_sample/static/js/runtime-main.4e9da1dc.js.map",
+    "static/css/2.f87e9f44.chunk.css": "/react_sample/static/css/2.f87e9f44.chunk.css",
+    "static/js/2.028b13a0.chunk.js": "/react_sample/static/js/2.028b13a0.chunk.js",
+    "static/js/2.028b13a0.chunk.js.map": "/react_sample/static/js/2.028b13a0.chunk.js.map",
+    "index.html": "/react_sample/index.html",
+    "precache-manifest.e7338abd0fdbf8c4169d9acca4d7e1d6.js": "/react_sample/precache-manifest.e7338abd0fdbf8c4169d9acca4d7e1d6.js",
+    "service-worker.js": "/react_sample/service-worker.js",
+    "static/css/2.f87e9f44.chunk.css.map": "/react_sample/static/css/2.f87e9f44.chunk.css.map",
+    "static/css/main.41c75463.chunk.css.map": "/react_sample/static/css/main.41c75463.chunk.css.map",
+    "static/js/2.028b13a0.chunk.js.LICENSE.txt": "/react_sample/static/js/2.028b13a0.chunk.js.LICENSE.txt",
+    "static/media/SHBELSX-TY-2.jpg": "/react_sample/static/media/SHBELSX-TY-2.9d6eb4ad.jpg",
+    "static/media/SHBELSX-TY-Sole.jpg": "/react_sample/static/media/SHBELSX-TY-Sole.5b696cac.jpg",
+    "static/media/SHBELSX-TY.jpg": "/react_sample/static/media/SHBELSX-TY.ab2353cc.jpg",
+    "static/media/index.css": "/react_sample/static/media/badminton-wallpaper.79ad2380.jpg",
+    "static/media/logo.svg": "/react_sample/static/media/logo.5d5d9eef.svg",
+    "static/media/logo.jpg": "/react_sample/static/media/logo.ef147b85.jpg",
+    "static/media/ronney.jpg": "/react_sample/static/media/ronney.c4b847c0.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4e9da1dc.js",
+    "static/css/2.f87e9f44.chunk.css",
+    "static/js/2.028b13a0.chunk.js",
+    "static/css/main.41c75463.chunk.css",
+    "static/js/main.b9fa23b4.chunk.js"
+  ]
+}
