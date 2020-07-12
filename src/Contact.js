@@ -73,7 +73,7 @@ class Contact extends React.Component {
             <Card.Body>
               <Card.Title>{storeIcon}</Card.Title>
               <Card.Text>
-                We are located at 14304 Blackmon Dr, Rockville, MD 20853. Drop by and see the merchandise!
+                We are located at 3905 Arbor Crest Way, Rockville, MD 20853. Drop by and see the merchandise!
               </Card.Text>
               <Location />
             </Card.Body>

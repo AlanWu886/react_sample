@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Container, Row, Col } from 'react-bootstrap';
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route, Redirect} from 'react-router-dom'
 import {CSSTransition, TransitionGroup, } from 'react-transition-group';
 
 
@@ -61,6 +61,7 @@ class Main extends React.Component {
                     <Route path="/bags" render={(props) => <Products {...props} productList={this.state.products[currentPage]} />}></Route>
                     <Route path="/contact" component={Contact}></Route>
                     <Route path="/about" component={About}></Route>
+                    <Redirect from="*" to={"/home"} />
                   </Switch>
                 </CSSTransition>
               </TransitionGroup>
