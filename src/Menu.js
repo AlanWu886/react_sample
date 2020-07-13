@@ -4,7 +4,6 @@ import {NavLink} from 'react-router-dom'
 import ReactCSSTransitionGroup from 'react-transition-group'
 
 import Home from './Home'
-import Footwear from './Footwear'
 import Contact from './Contact'
 import About from './About'
 import Cart from './Cart'
@@ -17,7 +16,9 @@ class Menu extends React.Component {
     this.state = {
       styleActive: {
         fontWeight:'bold',
-        color: '#61dafb',
+        color: '#255734',
+        backgroundColor: '#00d0ff',
+        boxShadow: "0 0 10px #00d0ff , 0 0 40px #00d0ff, 0 0 80px #00d0ff"
       },
       activeNavi: null
     }
@@ -41,7 +42,7 @@ class Menu extends React.Component {
 
   }
 
-  childFunction=(name)=>{
+  grabName=(name)=>{
 
         this.props.functionCallFromParent(name);
   }
@@ -62,11 +63,11 @@ class Menu extends React.Component {
 
     const menuComponents = menuOptions.map(m =>
       <Nav.Item key={m.name} >
-        <Button className='navi-btn' variant='dark' size='sm'>
-          <NavLink className='navi' onClick={this.childFunction.bind(this, m.name)} to={'/' + m.name} activeStyle={this.state.styleActive}>
+
+          <NavLink className='navi' onClick={this.grabName.bind(this, m.name)} to={'/' + m.name} activeStyle={this.state.styleActive}>
             {this.capitalize(m.name)}
           </NavLink>
-        </Button>
+
       </Nav.Item>)
 
 

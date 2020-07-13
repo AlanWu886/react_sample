@@ -1,7 +1,23 @@
 {
   "racquets": [],
   "shuttlecocks": [],
-  "string": [],
+  "string": [
+    {"name": "NANOGY 99", "price":"15", "image":[]},
+    {"name": "NANOGY 98", "price":"15", "image":[]},
+    {"name": "AEROBITE", "price":"15", "image":[]},
+    {"name": "AEROSONIC", "price":"15", "image":[]},
+    {"name": "NANOGY 95", "price":"15", "image":[]},
+    {"name": "BG 66 FORCE", "price":"15", "image":[]},
+    {"name": "BG 85", "price":"15", "image":[]},
+    {"name": "BG 80 POWER", "price":"15", "image":[]},
+    {"name": "BG 80", "price":"15", "image":[]},
+    {"name": "BG 66 ULTIMAX", "price":"15", "image":[]},
+    {"name": "BG 70 PRO", "price":"15", "image":[]},
+    {"name": "BG 68 TI", "price":"15", "image":[]},
+    {"name": "BG 66", "price":"15", "image":[]},
+    {"name": "BG 65 TI ", "price":"15", "image":[]},
+    {"name": "BG 65", "price":"15", "image":[]}
+  ],
   "footwear": [
     {
       "id": "0",

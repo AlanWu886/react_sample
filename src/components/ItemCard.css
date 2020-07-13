@@ -1,9 +1,18 @@
 .product-image {
-  width: 200px;
-  height: 200px;
+
+  display: block;
+  max-width:200px;
+  max-height:200px;
+  width: auto;
+  height: auto;
 }
 
 .card-body {
   opacity: 0.9;
   padding:3px 10px 3px 10px;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  filter:invert(1);
 }

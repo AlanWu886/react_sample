@@ -103,6 +103,11 @@ class ItemCard extends React.Component {
       <option key={color} value={color}>{color}</option>
     )
 
+    const priceTag = this.state.item.color[this.state.order.color]?
+    this.state.item.color[this.state.order.color]["price"] :
+    ""
+    console.log(priceTag);
+
     const sizeOptions = this.state.item.color[this.state.order.color]?
     Object.keys(this.state.item.color[this.state.order.color]["size"]).map(size =>
       <option key= {size} value={size}>{size}</option>
@@ -155,54 +160,60 @@ class ItemCard extends React.Component {
                   <Card.Text>{this.state.item.description.repeat(10)}</Card.Text>
                   <Row style={{verticalAlign:'bottom'}}>
                     <Card.Footer style={{width:"100%"}}>
-                      <Form inline style={{float:"right"}}>
-                        <Form.Group>
-                          <Form.Label style={this.labelWidth} htmlFor="inlineFormCustomSelectPref">
-                            Color
-                          </Form.Label>
-                          <Form.Control size="sm" as="select"
-                          id="color"
-                          className="ml-2 mr-4"
-                          value={this.state.order.color}
-                          onChange={this.setOrder} >
-                            <option key="" value="">Choose...</option>
-                            {colorOptions}
-                          </Form.Control>
-                        </Form.Group>
+                      <Row style={{float:"right"}}>
+                        <Form inline >
+                          <Form.Group>
+                            <Form.Label style={this.labelWidth} htmlFor="inlineFormCustomSelectPref">
+                              Color
+                            </Form.Label>
+                            <Form.Control size="sm" as="select"
+                            id="color"
+                            className="ml-2 mr-4"
+                            value={this.state.order.color}
+                            onChange={this.setOrder} >
+                              <option key="" value="">Choose...</option>
+                              {colorOptions}
+                            </Form.Control>
+                          </Form.Group>
 
-                        <Form.Group>
-                          <Form.Label style={this.labelWidth} htmlFor="inlineFormCustomSelectPref">
-                            Size
-                          </Form.Label>
-                          <Form.Control size="sm" as="select"
-                          id="size"
-                          className="ml-2 mr-4"
-                          value={this.state.order.size}
-                          onChange={this.setOrder}>
-                            <option key="" value="">Choose...</option>
-                            {sizeOptions}
-                          </Form.Control>
-                        </Form.Group>
+                          <Form.Group>
+                            <Form.Label style={this.labelWidth} htmlFor="inlineFormCustomSelectPref">
+                              Size
+                            </Form.Label>
+                            <Form.Control size="sm" as="select"
+                            id="size"
+                            className="ml-2 mr-4"
+                            value={this.state.order.size}
+                            onChange={this.setOrder}>
+                              <option key="" value="">Choose...</option>
+                              {sizeOptions}
+                            </Form.Control>
+                          </Form.Group>
 
-                        <Form.Group>
-                          <Form.Label style={this.labelWidth} htmlFor="inlineFormCustomSelectPref">
-                            Amount
-                          </Form.Label>
-                          <Form.Control size="sm" as="select"
-                          id="amount"
-                          custom
-                          className="ml-2 mr-4"
-                          value={this.state.order.amount}
-                          onChange={this.setOrder}>
-                            {amountOptions}
 
-                          </Form.Control>
-                        </Form.Group>
-                        <span>
-                          <Button size="sm" onClick={this.resetOrder} variant="warning">Reset</Button>
-                          <Button size="sm" style={{marginLeft:"5px"}}>Add to Cart</Button>
-                        </span>
-                      </Form>
+
+
+                          <Form.Group>
+                            <Form.Label style={this.labelWidth} htmlFor="inlineFormCustomSelectPref">
+                              Amount
+                            </Form.Label>
+                            <Form.Control size="sm" as="select"
+                            id="amount"
+                            custom
+                            className="ml-2 mr-4"
+                            value={this.state.order.amount}
+                            onChange={this.setOrder}>
+                              {amountOptions}
+
+                            </Form.Control>
+                          </Form.Group>
+                          <span>
+                            <Button size="sm" onClick={this.resetOrder} variant="warning">Reset</Button>
+                            <Button size="sm" style={{marginLeft:"5px"}}>Add to Cart</Button>
+                          </span>
+                        </Form>
+                      </Row>
+
 
                     </Card.Footer>
                   </Row>

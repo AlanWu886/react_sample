@@ -6,11 +6,11 @@ import {CSSTransition, TransitionGroup, } from 'react-transition-group';
 
 import Cart from './Cart'
 import Home from './Home'
-import Footwear from './Footwear'
 import Products from './Products'
 import Contact from './Contact'
 import About from './About'
 import Footer from './Footer'
+import Service from './Service'
 
 import './Main.css'
 
@@ -59,6 +59,7 @@ class Main extends React.Component {
                     <Route exact path="/home" component={Home}/>
                     <Route path="/footwear" render={(props) => <Products {...props} productList={this.state.products[currentPage]} title={currentPage}/>}></Route>
                     <Route path="/bags" render={(props) => <Products {...props} productList={this.state.products[currentPage]} />}></Route>
+                    <Route path="/service" render={(props) => <Service {...props} productList={this.state.products.string} />}></Route>
                     <Route path="/contact" component={Contact}></Route>
                     <Route path="/about" component={About}></Route>
                     <Redirect from="*" to={"/home"} />
