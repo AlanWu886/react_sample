@@ -7,7 +7,7 @@ function Footer() {
   const footerStyle = {
     margin:"20px",
     flexShrink:"0",
-    prosition:"relative",
+    
     textAlign:"center"
 
   }

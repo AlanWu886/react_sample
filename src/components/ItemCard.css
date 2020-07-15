@@ -16,3 +16,16 @@
 .carousel-control-prev-icon {
   filter:invert(1);
 }
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+
+
+}
+
+.orderSelect {
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+}

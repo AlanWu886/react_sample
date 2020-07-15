@@ -19,14 +19,6 @@ class ItemCard extends React.Component {
       color:null,
       showModal:false
     }
-    this.colorOptions = Object.keys(this.state.item.color).map(color =>
-      <option key= {color} value={color}>{color}</option>
-    )
-
-    this.sizeOptions = this.state.item.color[this.state.order.color]?
-    Object.keys(this.state.item.color[this.state.order.color]["size"]).map(size =>
-      <option key= {size} value={size}>{size}</option>
-    ) : null
 
     this.labelWidth = {
       minWidth: '60px'
@@ -104,9 +96,14 @@ class ItemCard extends React.Component {
     )
 
     const priceTag = this.state.item.color[this.state.order.color]?
-    this.state.item.color[this.state.order.color]["price"] :
-    ""
+    <span style={{textDecoration:"line-through", color:"red", fontWeight:"bold", marginRight:"15px"}}>{this.state.item.color[this.state.order.color]["price"]}</span> :
+    <span style={{marginRight:"15px"}}>N/A</span>
     console.log(priceTag);
+
+    const priceTags = Object.keys(this.state.item.color).map(color =>
+      <span style={{marginLeft:"10px", textDecoration:"line-through"}}>{this.state.item.color[color]["price"]}({color})</span>
+    )
+    console.log(priceTags);
 
     const sizeOptions = this.state.item.color[this.state.order.color]?
     Object.keys(this.state.item.color[this.state.order.color]["size"]).map(size =>
@@ -155,13 +152,23 @@ class ItemCard extends React.Component {
                   </Modal.Body>
 
                 </Modal>
-                <Col>
+                <Col className="cardContent">
                   <Card.Title >{this.state.item.name}</Card.Title>
-                  <Card.Text>{this.state.item.description.repeat(10)}</Card.Text>
-                  <Row style={{verticalAlign:'bottom'}}>
-                    <Card.Footer style={{width:"100%"}}>
+                  <Card.Text className="cardContent" style={{height:"100%"}}>
+                    <div style={{height:"100%"}}>{this.state.item.description.repeat(1)}</div>
+
+
+                  </Card.Text>
+                  <Row className="orderSelect">
+                    <Card.Footer  style={{width:"100%", padding:"5px 15px"}}>
                       <Row style={{float:"right"}}>
                         <Form inline >
+                          <Form.Group>
+                            <Form.Label style={this.labelWidth} htmlFor="inlineFormCustomSelectPref">
+                              MSRP:
+                            </Form.Label>
+                            <span>{priceTag}</span>
+                          </Form.Group>
                           <Form.Group>
                             <Form.Label style={this.labelWidth} htmlFor="inlineFormCustomSelectPref">
                               Color
@@ -206,11 +213,15 @@ class ItemCard extends React.Component {
                               {amountOptions}
 
                             </Form.Control>
+
                           </Form.Group>
-                          <span>
+                          <Form.Group>
+                            <Form.Label  htmlFor="inlineFormCustomSelectPref">
+                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </Form.Label>
                             <Button size="sm" onClick={this.resetOrder} variant="warning">Reset</Button>
                             <Button size="sm" style={{marginLeft:"5px"}}>Add to Cart</Button>
-                          </span>
+                          </Form.Group>
                         </Form>
                       </Row>
 
