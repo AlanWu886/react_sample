@@ -17,6 +17,29 @@ body {
 
 }
 
+html {
+  --scrollbarBG: #36404e;
+  --thumbBG: #cce0ff;
+}
+body::-webkit-scrollbar {
+  width: 1em;
+}
+body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+body::-webkit-scrollbar-track {
+  width: 1em;
+  background: var(--scrollbarBG);
+}
+body::-webkit-scrollbar-thumb {
+  background-clip: content-box;
+  background-color: var(--thumbBG) ;
+  border-radius: 15px;
+
+  box-shadow: 0 0 10px var(--thumbBG) , 0 0 50px var(--thumbBG), 0 0 90px var(--thumbBG);
+}
+
 #map {
         height: 100%;
       }

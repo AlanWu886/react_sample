@@ -21,7 +21,8 @@ class ItemCard extends React.Component {
     }
 
     this.labelWidth = {
-      minWidth: '60px'
+      minWidth: '60px',
+      margin:'5px'
     }
 
     this.setOrder = this.setOrder.bind(this)
@@ -161,8 +162,8 @@ class ItemCard extends React.Component {
                   </Card.Text>
                   <Row className="orderSelect">
                     <Card.Footer  style={{width:"100%", padding:"5px 15px"}}>
-                      <Row style={{float:"right"}}>
-                        <Form inline >
+
+                        <Form inline style={{float:"right"}}>
                           <Form.Group>
                             <Form.Label style={this.labelWidth} htmlFor="inlineFormCustomSelectPref">
                               MSRP:
@@ -215,15 +216,15 @@ class ItemCard extends React.Component {
                             </Form.Control>
 
                           </Form.Group>
-                          <Form.Group>
+                          <Form.Group style={{float:"right"}}>
                             <Form.Label  htmlFor="inlineFormCustomSelectPref">
-                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              &nbsp;&nbsp;
                             </Form.Label>
                             <Button size="sm" onClick={this.resetOrder} variant="warning">Reset</Button>
                             <Button size="sm" style={{marginLeft:"5px"}}>Add to Cart</Button>
                           </Form.Group>
                         </Form>
-                      </Row>
+
 
 
                     </Card.Footer>
