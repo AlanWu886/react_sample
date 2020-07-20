@@ -16,7 +16,7 @@ class App extends React.Component {
 
     this.state = {
       isLoading: true,
-      selectedMenu: ''
+      selectedMenu: window.location.pathname.substring(1)
     }
 
     this.style = {
@@ -33,6 +33,8 @@ class App extends React.Component {
         isLoading: false
       })
     }, 500)
+
+
   }
 
   menuSelected=(menu_name)=>{
@@ -52,7 +54,7 @@ class App extends React.Component {
             <Router>
               <Header />
               <Menu functionCallFromParent={this.menuSelected.bind(this)}/>
-              <Main />
+              <Main currentPage={this.state.selectedMenu}/>
               <Footer />
             </Router>
           }

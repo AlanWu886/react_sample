@@ -2,7 +2,10 @@ import React from 'react'
 import {Card, CardDeck, Image, Row, Col, Dropdown, DropdownButton, Form, Button, Modal, Carousel} from 'react-bootstrap'
 import FontAwesome from 'react-fontawesome'
 import './ItemCard.css'
-
+import { connect } from 'react-redux'
+import { produce } from 'immer'
+import * as actions from '../actionLookup'
+import {updateCart} from '../action'
 
 class ItemCard extends React.Component {
   constructor(props) {
@@ -11,12 +14,11 @@ class ItemCard extends React.Component {
       item: this.props.item,
       order:{
         id: this.props.item.id,
-        name: "",
+        name: this.props.item.name,
         color: "",
         size: "",
         amount: ""
       },
-      color:null,
       showModal:false
     }
 
@@ -30,6 +32,11 @@ class ItemCard extends React.Component {
     this.showImg = this.showImg.bind(this)
     this.closeImg = this.closeImg.bind(this)
   }
+
+  addToCart = () => {
+    this.props.addToCart(this.state.order)
+  }
+
 
   showImg(){
     this.setState(
@@ -60,7 +67,7 @@ class ItemCard extends React.Component {
         console.log(order[e.target.id]);
         if(order.color && e.target.id === "color") {
           console.log(Object.keys(order));
-          Object.keys(order).map(key => order[key]="")
+          Object.keys(order).filter(key => key != "id" && key!= "name").map(key => order[key]="")
           console.log(order);
           order[e.target.id] = e.target.value
           return{ order }
@@ -81,8 +88,8 @@ class ItemCard extends React.Component {
     this.setState(
       prevState => {
         let order = Object.assign({}, prevState.order);
-        Object.keys(order).map(key => order[key]="")
-        order.id=this.props.item.id
+        Object.keys(order).filter(key => key != "id" && key!= "name").map(key => order[key]="")
+
         return { order }
       },
       ()=>{
@@ -92,16 +99,18 @@ class ItemCard extends React.Component {
   }
 
   render() {
-    const colorOptions = Object.keys(this.state.item.color).map(color =>
+    console.log(this.props);
+    const test = <h1>test</h1>
+    const colorOptions = this.state.item.color? Object.keys(this.state.item.color).map(color =>
       <option key={color} value={color}>{color}</option>
-    )
+    ):<option>n/a</option>
 
     const priceTag = this.state.item.color[this.state.order.color]?
     <span style={{textDecoration:"line-through", color:"red", fontWeight:"bold", marginRight:"15px"}}>{this.state.item.color[this.state.order.color]["price"]}</span> :
     <span style={{marginRight:"15px"}}>N/A</span>
     console.log(priceTag);
 
-    const priceTags = Object.keys(this.state.item.color).map(color =>
+    const priceTags =  Object.keys(this.state.item.color).map(color =>
       <span style={{marginLeft:"10px", textDecoration:"line-through"}}>{this.state.item.color[color]["price"]}({color})</span>
     )
     console.log(priceTags);
@@ -109,7 +118,7 @@ class ItemCard extends React.Component {
     const sizeOptions = this.state.item.color[this.state.order.color]?
     Object.keys(this.state.item.color[this.state.order.color]["size"]).map(size =>
       <option key= {size} value={size}>{size}</option>
-    ) : null
+    ) : <option>n/a</option>
     console.log(sizeOptions);
 
     const amountOptions = Array.from(Array(21), (_, i) => i).map(
@@ -136,8 +145,11 @@ class ItemCard extends React.Component {
       </Carousel.Item>
     )
 
+    console.log(this.props);
     return(
+
       <div>
+
         <CardDeck>
           <Card className='card-body' bg='dark' text='white'>
             <Card.Body >
@@ -156,7 +168,7 @@ class ItemCard extends React.Component {
                 <Col className="cardContent">
                   <Card.Title >{this.state.item.name}</Card.Title>
                   <Card.Text className="cardContent" style={{height:"100%"}}>
-                    <div style={{height:"100%"}}>{this.state.item.description.repeat(1)}</div>
+                    <span style={{height:"100%"}}>{this.state.item.description.repeat(1)}</span>
 
 
                   </Card.Text>
@@ -221,7 +233,7 @@ class ItemCard extends React.Component {
                               &nbsp;&nbsp;
                             </Form.Label>
                             <Button size="sm" onClick={this.resetOrder} variant="warning">Reset</Button>
-                            <Button size="sm" style={{marginLeft:"5px"}}>Add to Cart</Button>
+                            <Button size="sm" onClick={this.addToCart}  style={{marginLeft:"5px"}}>Add to Cart</Button>
                           </Form.Group>
                         </Form>
 
@@ -239,4 +251,16 @@ class ItemCard extends React.Component {
   }
 }
 
-export default ItemCard
+const mapStateToProps = (state) => {
+  return {
+    order: state.order
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToCart: (order) => {dispatch(updateCart(order))}
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemCard)

@@ -2,7 +2,7 @@ import React from 'react'
 import ItemCard from './components/ItemCard'
 
 import {Row, Col} from 'react-bootstrap'
-
+import { connect } from 'react-redux'
 
 class Products extends React.Component {
   constructor(props) {
@@ -23,10 +23,10 @@ class Products extends React.Component {
   }
 
   render() {
-    console.log(this.state.productList);
-    const productItems = this.props.productList.map(item=>
+    console.log(this.props);
+    const productItems = this.props.productList? this.props.productList.map(item=>
       <Col key={item.id} style={{marginBottom:'20px'}} sm={12}><ItemCard key={item.id} item={item}/></Col>
-    )
+    ) : null
     return(
       <div>
         <h3 style={{textTransform: 'capitalize'}}>{this.props.title}</h3>
@@ -38,4 +38,10 @@ class Products extends React.Component {
   }
 }
 
-export default Products
+const mapStateToProps = (state) => {
+  return state
+}
+
+
+
+export default connect(mapStateToProps)(Products)

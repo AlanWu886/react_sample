@@ -1,6 +1,8 @@
 import React from 'react'
 import { Dropdown, DropdownButton, Button, Modal, Form } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome'
+import { connect } from 'react-redux'
+
 
 class Cart extends React.Component {
   constructor(props){
@@ -14,9 +16,7 @@ class Cart extends React.Component {
           email:"",
           cell:""
         },
-        orderList:[
-          
-        ]
+        orderList:this.props.order
       },
       showCheckOut:false
     }
@@ -45,6 +45,7 @@ class Cart extends React.Component {
   }
 
   render(){
+    console.log(this.props);
     const cartIcon = <FontAwesome
       className="super-crazy-colors"
       name="shopping-cart"
@@ -68,20 +69,18 @@ class Cart extends React.Component {
       backgroundColor:"#3f3e4f",
       borderColor:"#3f3e4f"
     }
+    console.log(this.props, this.state);
+    const orderItems = this.props.order.length != 0? this.props.order.map(order=> <div style={{display: 'inline-flex', width:'100%', marginBottom:'3px'}}>
+      <Dropdown.Item disabled>{order.name} + {order.color} x {order.amount}</Dropdown.Item>
+      <Button size='sm' variant='danger' style={removeIconStyle}>{removeIcon}</Button>
+    </div> ) : <Dropdown.Item disabled>Empty Cart</Dropdown.Item>
+
     return(
 
       <div>
-
         <DropdownButton alignRight id="cart" title={cartIcon}>
           <Dropdown.Header>Order Details</Dropdown.Header>
-          <div style={{display: 'inline-flex', width:'100%', marginBottom:'3px'}}>
-            <Dropdown.Item disabled>Item11 x 1012312412134123132qeweawd</Dropdown.Item>
-            <Button size='sm' variant='danger' style={removeIconStyle}>{removeIcon}</Button>
-          </div>
-          <div style={{display: 'inline-flex', width:'100%', marginBottom:'3px'}}>
-            <Dropdown.Item disabled>Item1 x 1</Dropdown.Item>
-            <Button size='sm' variant='danger' style={removeIconStyle}>{removeIcon}</Button>
-          </div>
+          {orderItems}
           <Dropdown.Divider />
           <Dropdown.Item disabled>Total: $123456</Dropdown.Item>
           <Button onClick={()=>this.openCheckOut()} style={{margin:'10px', float:'right' , alignSelf: 'center'}}>Check Out!</Button>
@@ -122,4 +121,8 @@ class Cart extends React.Component {
   }
 }
 
-export default Cart
+const mapStateToProps = (state) => {
+  return state
+}
+
+export default connect(mapStateToProps)(Cart)

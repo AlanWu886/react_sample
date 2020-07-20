@@ -3,7 +3,6 @@ import {Container, Row, Col } from 'react-bootstrap';
 import {Switch, Route, Redirect} from 'react-router-dom'
 import {CSSTransition, TransitionGroup, } from 'react-transition-group';
 
-
 import Cart from './Cart'
 import Home from './Home'
 import Products from './Products'
@@ -14,19 +13,22 @@ import Service from './Service'
 
 import './Main.css'
 
+import { connect } from 'react-redux'
+
 class Main extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       count: 3,
-      products: require('./product.json'),
+
     }
-    console.log(this.state.products);
 
     this.style = {
       color:'white',
       margin:'0 40px 0 20px'
     }
+
+
 
     this.increOne = this.increOne.bind(this)
 
@@ -45,6 +47,7 @@ class Main extends React.Component {
 
   render() {
     console.log(this.state)
+    console.log(this.props);
     const currentPage = window.location.pathname.substring(1)
     console.log(currentPage);
     return(
@@ -57,9 +60,9 @@ class Main extends React.Component {
                 <CSSTransition key={location.key} timeout={300} classNames="fade">
                   <Switch location={location}>
                     <Route exact path="/home" component={Home}/>
-                    <Route path="/footwear" render={(props) => <Products {...props} productList={this.state.products[currentPage]} title={currentPage}/>}></Route>
-                    <Route path="/bags" render={(props) => <Products {...props} productList={this.state.products[currentPage]} />}></Route>
-                    <Route path="/service" render={(props) => <Service {...props} productList={this.state.products.string} />}></Route>
+                    <Route path="/footwear" render={(props) => <Products {...props} productList={this.props.products[this.props.currentPage]} title={this.props.currentPage}/>}></Route>
+                    <Route path="/bags" render={(props) => <Products {...props} productList={this.props.products[this.props.currentPage]} title={this.props.currentPage}/>}></Route>
+                    <Route path="/service" render={(props) => <Service {...props} productList={this.props.products.string} />}></Route>
                     <Route path="/contact" component={Contact}></Route>
                     <Route path="/about" component={About}></Route>
                     <Redirect from="*" to={"/home"} />
@@ -80,6 +83,8 @@ class Main extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return state
+}
 
-
-export default Main
+export default connect(mapStateToProps)(Main)
