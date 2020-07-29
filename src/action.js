@@ -6,3 +6,10 @@ export const updateCart = (order) => {
     order
   }
 }
+
+export const deleteOrder = (order) => {
+  return {
+    type: actions.REMOVE_FROM_CART,
+    order
+  }
+}

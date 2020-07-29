@@ -23,8 +23,6 @@
       "id": "0",
       "name": "POWER CUSHION 65 X 2 WIDE",
       "description": "Intermediate to advanced model for a comfortable fit.",
-      "size": "US 9",
-      "price": "$39.99",
       "memo": "this is memo",
       "image": [
         {
@@ -37,26 +35,10 @@
           "path":"./productImage/SHBELSX-TY-2.jpg"
         }
       ],
-      "color":{
-        "Black/White":{"price":"$39.99", "size":{
-            "US 9": {
-              "stock":"13"
-            },
-            "US 10": {
-              "stock": "3"
-            }
-          }
-        },
-        "Red/White":{"price":"$42.99", "size":{
-            "US 9": {
-              "stock": "15"
-            },
-            "US 10.5": {
-              "stock": "36"
-            }
-          }
-        }
-      }
+      "spec":[
+        {"color":"Black/White","price":"$39.99","size":["US 9", "US 10"]},
+        {"color":"Red/White","price":"$42.99","size":["US 9", "US 10.5"]}
+      ]
     },
     {
       "id": "1",
@@ -68,26 +50,11 @@
           "path":"./productImage/SHBELSX-TY.jpg"
         }
       ],
-      "color":{
-        "Black/White":{"price":"$39.99", "size":{
-            "US 9": {
-              "stock":"13"
-            },
-            "US 10": {
-              "stock": "3"
-            }
-          }
-        },
-        "Red/White":{"price":"$42.99", "size":{
-            "US 9": {
-              "stock": "15"
-            },
-            "US 10.5": {
-              "stock": "36"
-            }
-          }
-        }
-      }
+
+      "spec":[
+        {"color":"Black/White","price":"$39.99","size":["US 9", "US 10"]},
+        {"color":"Red/White","price":"$42.99","size":["US 9", "US 10.5"]}
+      ]
     }
   ],
   "bags": [],

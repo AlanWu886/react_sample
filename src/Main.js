@@ -60,11 +60,11 @@ class Main extends React.Component {
                 <CSSTransition key={location.key} timeout={300} classNames="fade">
                   <Switch location={location}>
                     <Route exact path="/home" component={Home}/>
-                    <Route path="/footwear" render={(props) => <Products {...props} productList={this.props.products[this.props.currentPage]} title={this.props.currentPage}/>}></Route>
-                    <Route path="/bags" render={(props) => <Products {...props} productList={this.props.products[this.props.currentPage]} title={this.props.currentPage}/>}></Route>
-                    <Route path="/service" render={(props) => <Service {...props} productList={this.props.products.string} />}></Route>
-                    <Route path="/contact" component={Contact}></Route>
-                    <Route path="/about" component={About}></Route>
+                    <Route exact path="/footwear" render={(props) => <Products {...props} productList={this.props.products[this.props.currentPage]} title={this.props.currentPage}/>}></Route>
+                    <Route exact path="/bags" render={(props) => <Products {...props} productList={this.props.products[this.props.currentPage]} title={this.props.currentPage}/>}></Route>
+                    <Route exact path="/service" render={(props) => <Service {...props} productList={this.props.products.string} />}></Route>
+                    <Route exact path="/contact" component={Contact}></Route>
+                    <Route exact path="/about" component={About}></Route>
                     <Redirect from="*" to={"/home"} />
                   </Switch>
                 </CSSTransition>

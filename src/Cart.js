@@ -2,7 +2,8 @@ import React from 'react'
 import { Dropdown, DropdownButton, Button, Modal, Form } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome'
 import { connect } from 'react-redux'
-
+import * as actions from './actionLookup'
+import {deleteOrder} from './action'
 
 class Cart extends React.Component {
   constructor(props){
@@ -22,6 +23,11 @@ class Cart extends React.Component {
     }
     this.openCheckOut = this.openCheckOut.bind(this)
     this.closeCheckOut = this.closeCheckOut.bind(this)
+    this.removeFromCart = this.removeFromCart.bind(this)
+  }
+  removeFromCart(order){
+    this.forceUpdate()
+    this.props.removeFromCart(order)
   }
 
   openCheckOut(){
@@ -70,9 +76,9 @@ class Cart extends React.Component {
       borderColor:"#3f3e4f"
     }
     console.log(this.props, this.state);
-    const orderItems = this.props.order.length != 0? this.props.order.map(order=> <div style={{display: 'inline-flex', width:'100%', marginBottom:'3px'}}>
-      <Dropdown.Item disabled>{order.name} + {order.color} x {order.amount}</Dropdown.Item>
-      <Button size='sm' variant='danger' style={removeIconStyle}>{removeIcon}</Button>
+    const orderItems = this.props.order.length != 0? this.props.order.map(order=> <div key={order.id} style={{display: 'inline-flex', width:'100%', marginBottom:'3px'}}>
+      <Dropdown.Item disabled>{order.name} + {order.color} + {order.size} x {order.amount}</Dropdown.Item>
+      <Button size='sm' variant='danger' style={removeIconStyle} onClick={()=>this.removeFromCart(order)}>{removeIcon}</Button>
     </div> ) : <Dropdown.Item disabled>Empty Cart</Dropdown.Item>
 
     return(
@@ -125,4 +131,12 @@ const mapStateToProps = (state) => {
   return state
 }
 
-export default connect(mapStateToProps)(Cart)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    removeFromCart: (order) => {
+      console.log("delete")
+      dispatch(deleteOrder(order))}
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)

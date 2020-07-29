@@ -15,11 +15,20 @@ class ItemCard extends React.Component {
       order:{
         id: this.props.item.id,
         name: this.props.item.name,
-        color: "",
+        color: this.props.item.spec[0].color,
         size: "",
         amount: ""
       },
-      showModal:false
+      showModal:false,
+      errorMessage: {
+        id: false,
+        name: false,
+        color: false,
+        size:false,
+        amount:false
+      },
+      validOrder:false,
+      touched:false
     }
 
     this.labelWidth = {
@@ -27,16 +36,84 @@ class ItemCard extends React.Component {
       margin:'5px'
     }
 
+    this.props.order.length == 0 ? console.log("no order"): console.log("$$");
+
     this.setOrder = this.setOrder.bind(this)
     this.resetOrder = this.resetOrder.bind(this)
     this.showImg = this.showImg.bind(this)
     this.closeImg = this.closeImg.bind(this)
+    this.addToCart = this.addToCart.bind(this)
+    this.validateOrder = this.validateOrder.bind(this)
+    this.initOrderStatus = this.initOrderStatus.bind(this)
+    this.formTouched = this.formTouched.bind(this)
+
   }
 
-  addToCart = () => {
-    this.props.addToCart(this.state.order)
+  componentDidMount(){
+    this.initOrderStatus()
+
   }
 
+
+
+  initOrderStatus(){
+    this.props.order.map(order=> {if (order.id == this.props.item.id) {
+      this.setState(
+        prevState => {
+          return{order:order}
+        }, () => {
+          console.log(this.state.order)
+        }
+      )}}
+    )
+  }
+
+  formTouched(){
+    this.setState(prevState=>{
+      return{touched:true}
+    }, ()=>{
+      console.log(this.state.touched);
+    })
+  }
+
+  addToCart(id) {
+
+    if (this.state.validOrder) {
+      console.log(id)
+      setTimeout(()=>{
+        this.props.addToCart(this.state.order)
+      },1000)
+
+    } else {
+      console.log(this.state.order)
+
+    }
+    this.formTouched()
+  }
+
+  validateOrder(){
+    console.log("validating");
+    let invalid = 0
+    Object.keys(this.state.order).map(key => {
+      if (this.state.order[key] == "") {
+        this.state.errorMessage[key] = true
+        invalid ++
+      } else {
+        this.state.errorMessage[key] = false
+      }
+    })
+    let validOrder
+    console.log(this.state.errorMessage);
+    invalid == 0 ? validOrder = true :validOrder = false
+    console.log(validOrder);
+    this.setState(
+      prevState=> {
+        return{validOrder:validOrder}
+      }, ()=>{
+        console.log(this.state.validOrder);
+      }
+    )
+  }
 
   showImg(){
     this.setState(
@@ -47,6 +124,8 @@ class ItemCard extends React.Component {
       }
     )
   }
+
+
 
   closeImg(){
     this.setState(
@@ -78,9 +157,10 @@ class ItemCard extends React.Component {
       }
       ,
       ()=>{
-        console.log(this.state.order);
+        this.validateOrder()
+        console.log(this.state.order,this.props.order);
       }
-    );
+    )
   }
 
   resetOrder(){
@@ -89,8 +169,8 @@ class ItemCard extends React.Component {
       prevState => {
         let order = Object.assign({}, prevState.order);
         Object.keys(order).filter(key => key != "id" && key!= "name").map(key => order[key]="")
-
-        return { order }
+        order.color =  Object.keys(this.props.item.spec[0].color)
+        return { order:order, validOrder:false }
       },
       ()=>{
         console.log(this.state.order);
@@ -99,31 +179,31 @@ class ItemCard extends React.Component {
   }
 
   render() {
-    console.log(this.props);
-    const test = <h1>test</h1>
-    const colorOptions = this.state.item.color? Object.keys(this.state.item.color).map(color =>
-      <option key={color} value={color}>{color}</option>
-    ):<option>n/a</option>
 
-    const priceTag = this.state.item.color[this.state.order.color]?
-    <span style={{textDecoration:"line-through", color:"red", fontWeight:"bold", marginRight:"15px"}}>{this.state.item.color[this.state.order.color]["price"]}</span> :
+    console.log(this.props, this.state);
+    const test = <h1>test</h1>
+    const colorOptions = this.props.item.spec[0] ? this.props.item.spec.map(item =>
+
+      <option key={item.color} value={item.color}>{item.color}</option>
+    ):<option>n/a</option>
+    console.log(colorOptions);
+
+    const priceTag = this.props.item.spec.find(spec => {return spec.color === this.state.order.color})?
+    <span style={{textDecoration:"line-through", color:"red", fontWeight:"bold", marginRight:"15px"}}>{this.props.item.spec.find(spec => {return spec.color === this.state.order.color}).price}</span> :
     <span style={{marginRight:"15px"}}>N/A</span>
     console.log(priceTag);
 
-    const priceTags =  Object.keys(this.state.item.color).map(color =>
-      <span style={{marginLeft:"10px", textDecoration:"line-through"}}>{this.state.item.color[color]["price"]}({color})</span>
-    )
-    console.log(priceTags);
-
-    const sizeOptions = this.state.item.color[this.state.order.color]?
-    Object.keys(this.state.item.color[this.state.order.color]["size"]).map(size =>
+    const sizeOptions =this.props.item.spec.find(spec => {return spec.color === this.state.order.color})?
+    this.props.item.spec.find(spec => {return spec.color === this.state.order.color}).size.map(size =>
       <option key= {size} value={size}>{size}</option>
-    ) : <option>n/a</option>
+    ) : <option value="">n/a</option>
     console.log(sizeOptions);
 
-    const amountOptions = Array.from(Array(21), (_, i) => i).map(
+    const amountOptions = Array.from(Array(20), (_, i) => i+1).map(
       value=> <option key= {value} value={value}>{value}</option>
     )
+
+    const errorText = Object.keys(this.state.errorMessage).map(key=>this.state.errorMessage[key] == true ? <span>{key} </span> : <span></span>)
 
     const zoomIcon = <FontAwesome
       className="super-crazy-colors"
@@ -144,6 +224,8 @@ class ItemCard extends React.Component {
         </Carousel.Caption>
       </Carousel.Item>
     )
+
+    const isValid = this.state.validOrder
 
     console.log(this.props);
     return(
@@ -191,7 +273,7 @@ class ItemCard extends React.Component {
                             className="ml-2 mr-4"
                             value={this.state.order.color}
                             onChange={this.setOrder} >
-                              <option key="" value="">Choose...</option>
+
                               {colorOptions}
                             </Form.Control>
                           </Form.Group>
@@ -223,6 +305,7 @@ class ItemCard extends React.Component {
                             className="ml-2 mr-4"
                             value={this.state.order.amount}
                             onChange={this.setOrder}>
+                              <option key="" value="">0</option>
                               {amountOptions}
 
                             </Form.Control>
@@ -233,7 +316,7 @@ class ItemCard extends React.Component {
                               &nbsp;&nbsp;
                             </Form.Label>
                             <Button size="sm" onClick={this.resetOrder} variant="warning">Reset</Button>
-                            <Button size="sm" onClick={this.addToCart}  style={{marginLeft:"5px"}}>Add to Cart</Button>
+                            <Button size="sm" onClick={ ()=> this.addToCart(this.state.item.id)}  style={{marginLeft:"5px"}} disabled={!isValid}>Add to Cart</Button>
                           </Form.Group>
                         </Form>
 
@@ -252,6 +335,8 @@ class ItemCard extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log("loading item");
+
   return {
     order: state.order
   }
@@ -259,7 +344,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addToCart: (order) => {dispatch(updateCart(order))}
+    addToCart: (order) => {
+      console.log("submit")
+      dispatch(updateCart(order))}
   }
 }
 
