@@ -13,3 +13,10 @@ export const deleteOrder = (order) => {
     order
   }
 }
+
+export const updateContact = (buyer) => {
+  return {
+    type: actions.UPDATE_CONTACT,
+    buyer
+  }
+}

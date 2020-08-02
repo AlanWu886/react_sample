@@ -3,3 +3,13 @@
     width: 10px;
     display: inline-block;
 }
+
+.toastCustom {
+  color: #255734;
+  background: #00d0ff;
+  box-shadow: 0 0 10px #00d0ff , 0 0 40px #00d0ff, 0 0 80px #00d0ff ;
+}
+
+.empty-cart {
+  transform: translate(-105px, 40px) !important;
+}

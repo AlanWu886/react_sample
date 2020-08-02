@@ -16,6 +16,7 @@ class ItemCard extends React.Component {
         id: this.props.item.id,
         name: this.props.item.name,
         color: this.props.item.spec[0].color,
+        price: this.props.item.spec[0].price,
         size: "",
         amount: ""
       },
@@ -82,7 +83,7 @@ class ItemCard extends React.Component {
       console.log(id)
       setTimeout(()=>{
         this.props.addToCart(this.state.order)
-      },1000)
+      },0)
 
     } else {
       console.log(this.state.order)
@@ -149,6 +150,7 @@ class ItemCard extends React.Component {
           Object.keys(order).filter(key => key != "id" && key!= "name").map(key => order[key]="")
           console.log(order);
           order[e.target.id] = e.target.value
+          order.price = this.props.item.spec.find(spec => {return spec.color === e.target.value}).price
           return{ order }
         } else {
           order[e.target.id] = e.target.value
@@ -181,7 +183,7 @@ class ItemCard extends React.Component {
   render() {
 
     console.log(this.props, this.state);
-    const test = <h1>test</h1>
+
     const colorOptions = this.props.item.spec[0] ? this.props.item.spec.map(item =>
 
       <option key={item.color} value={item.color}>{item.color}</option>
@@ -260,7 +262,7 @@ class ItemCard extends React.Component {
                         <Form inline style={{float:"right"}}>
                           <Form.Group>
                             <Form.Label style={this.labelWidth} htmlFor="inlineFormCustomSelectPref">
-                              MSRP:
+                              MAP:
                             </Form.Label>
                             <span>{priceTag}</span>
                           </Form.Group>

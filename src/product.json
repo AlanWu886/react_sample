@@ -2,21 +2,67 @@
   "racquets": [],
   "shuttlecocks": [],
   "string": [
-    {"name": "NANOGY 99", "id":"", "description":"", "color":{"White":{"price":"", "size":{}}}, "image":[{"path":"./productImage/yonex.png"}]},
-    {"name": "NANOGY 98", "id":"", "description":"", "color":{"White":{"price":"", "size":{}}}, "image":[{"path":"./productImage/yonex.png"}]},
-    {"name": "AEROBITE", "id":"", "description":"", "color":{"White":{"price":"", "size":{}}}, "image":[{"path":"./productImage/yonex.png"}]},
-    {"name": "AEROSONIC", "id":"", "description":"", "color":{"White":{"price":"", "size":{}}}, "image":[{"path":"./productImage/yonex.png"}]},
-    {"name": "NANOGY 95", "id":"", "description":"", "color":{"White":{"price":"", "size":{}}}, "image":[{"path":"./productImage/yonex.png"}]},
-    {"name": "BG 66 FORCE", "id":"", "description":"", "color":{"White":{"price":"", "size":{}}}, "image":[{"path":"./productImage/yonex.png"}]},
-    {"name": "BG 85", "id":"", "description":"", "color":{"White":{"price":"", "size":{}}}, "image":[{"path":"./productImage/yonex.png"}]},
-    {"name": "BG 80 POWER", "id":"", "description":"", "color":{"White":{"price":"", "size":{}}}, "image":[{"path":"./productImage/yonex.png"}]},
-    {"name": "BG 80", "id":"", "description":"", "color":{"White":{"price":"", "size":{}}}, "image":[{"path":"./productImage/yonex.png"}]},
-    {"name": "BG 66 ULTIMAX", "id":"", "description":"", "color":{"White":{"price":"", "size":{}}}, "image":[{"path":"./productImage/yonex.png"}]},
-    {"name": "BG 70 PRO", "id":"", "description":"", "color":{"White":{"price":"", "size":{}}}, "image":[{"path":"./productImage/yonex.png"}]},
-    {"name": "BG 68 TI", "id":"", "description":"", "color":{"White":{"price":"", "size":{}}}, "image":[{"path":"./productImage/yonex.png"}]},
-    {"name": "BG 66", "id":"", "description":"", "color":{"White":{"price":"", "size":{}}}, "image":[{"path":"./productImage/yonex.png"}]},
-    {"name": "BG 65 TI ", "id":"", "description":"", "color":{"White":{"price":"", "size":{}}}, "image":[{"path":"./productImage/yonex.png"}]},
-    {"name": "BG 65", "id":"", "description":"", "color":{"White":{"price":"", "size":{}}}, "image":[{"path":"./productImage/yonex.png"}]}
+    {"name": "NANOGY 99", "id":"", "description":"",
+      "spec":[
+      {"color":"Black/White","price":"$39.99","size":["US 9", "US 10"]},
+      {"color":"Red/White","price":"$42.99","size":["US 9", "US 10.5"]}
+    ], "image":[{"path":"./productImage/yonex.png"}]},
+    {"name": "NANOGY 98", "id":"", "description":"", "spec":[
+    {"color":"Black/White","price":"$39.99","size":["US 9", "US 10"]},
+    {"color":"Red/White","price":"$42.99","size":["US 9", "US 10.5"]}
+    ], "image":[{"path":"./productImage/yonex.png"}]},
+        {"name": "AEROBITE", "id":"", "description":"", "spec":[
+    {"color":"Black/White","price":"$39.99","size":["US 9", "US 10"]},
+    {"color":"Red/White","price":"$42.99","size":["US 9", "US 10.5"]}
+    ], "image":[{"path":"./productImage/yonex.png"}]},
+        {"name": "AEROSONIC", "id":"", "description":"", "spec":[
+    {"color":"Black/White","price":"$39.99","size":["US 9", "US 10"]},
+    {"color":"Red/White","price":"$42.99","size":["US 9", "US 10.5"]}
+    ], "image":[{"path":"./productImage/yonex.png"}]},
+        {"name": "NANOGY 95", "id":"", "description":"", "spec":[
+    {"color":"Black/White","price":"$39.99","size":["US 9", "US 10"]},
+    {"color":"Red/White","price":"$42.99","size":["US 9", "US 10.5"]}
+    ], "image":[{"path":"./productImage/yonex.png"}]},
+        {"name": "BG 66 FORCE", "id":"", "description":"", "spec":[
+    {"color":"Black/White","price":"$39.99","size":["US 9", "US 10"]},
+    {"color":"Red/White","price":"$42.99","size":["US 9", "US 10.5"]}
+    ], "image":[{"path":"./productImage/yonex.png"}]},
+        {"name": "BG 85", "id":"", "description":"", "spec":[
+    {"color":"Black/White","price":"$39.99","size":["US 9", "US 10"]},
+    {"color":"Red/White","price":"$42.99","size":["US 9", "US 10.5"]}
+    ], "image":[{"path":"./productImage/yonex.png"}]},
+        {"name": "BG 80 POWER", "id":"", "description":"", "spec":[
+    {"color":"Black/White","price":"$39.99","size":["US 9", "US 10"]},
+    {"color":"Red/White","price":"$42.99","size":["US 9", "US 10.5"]}
+    ], "image":[{"path":"./productImage/yonex.png"}]},
+        {"name": "BG 80", "id":"", "description":"", "spec":[
+    {"color":"Black/White","price":"$39.99","size":["US 9", "US 10"]},
+    {"color":"Red/White","price":"$42.99","size":["US 9", "US 10.5"]}
+    ], "image":[{"path":"./productImage/yonex.png"}]},
+        {"name": "BG 66 ULTIMAX", "id":"", "description":"", "spec":[
+    {"color":"Black/White","price":"$39.99","size":["US 9", "US 10"]},
+    {"color":"Red/White","price":"$42.99","size":["US 9", "US 10.5"]}
+    ], "image":[{"path":"./productImage/yonex.png"}]},
+        {"name": "BG 70 PRO", "id":"", "description":"", "spec":[
+    {"color":"Black/White","price":"$39.99","size":["US 9", "US 10"]},
+    {"color":"Red/White","price":"$42.99","size":["US 9", "US 10.5"]}
+    ], "image":[{"path":"./productImage/yonex.png"}]},
+        {"name": "BG 68 TI", "id":"", "description":"", "spec":[
+    {"color":"Black/White","price":"$39.99","size":["US 9", "US 10"]},
+    {"color":"Red/White","price":"$42.99","size":["US 9", "US 10.5"]}
+    ], "image":[{"path":"./productImage/yonex.png"}]},
+        {"name": "BG 66", "id":"", "description":"", "spec":[
+    {"color":"Black/White","price":"$39.99","size":["US 9", "US 10"]},
+    {"color":"Red/White","price":"$42.99","size":["US 9", "US 10.5"]}
+    ], "image":[{"path":"./productImage/yonex.png"}]},
+        {"name": "BG 65 TI ", "id":"", "description":"", "spec":[
+    {"color":"Black/White","price":"$39.99","size":["US 9", "US 10"]},
+    {"color":"Red/White","price":"$42.99","size":["US 9", "US 10.5"]}
+    ], "image":[{"path":"./productImage/yonex.png"}]},
+        {"name": "BG 65", "id":"", "description":"", "spec":[
+    {"color":"Black/White","price":"$39.99","size":["US 9", "US 10"]},
+    {"color":"Red/White","price":"$42.99","size":["US 9", "US 10.5"]}
+    ], "image":[{"path":"./productImage/yonex.png"}]}
   ],
   "footwear": [
     {

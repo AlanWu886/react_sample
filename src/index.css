@@ -12,8 +12,9 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-
+  overflow-x: hidden;
   color: #cce0ff;
+  margin-left: calc(100vw - 100%);
 
 }
 
@@ -22,14 +23,14 @@ html {
   --thumbBG: #cce0ff;
 }
 body::-webkit-scrollbar {
-  width: 1em;
+  width: 11px;
 }
 body {
   scrollbar-width: thin;
   scrollbar-color: var(--thumbBG) var(--scrollbarBG);
 }
 body::-webkit-scrollbar-track {
-  width: 1em;
+  width: 11px;
   background: var(--scrollbarBG);
 }
 body::-webkit-scrollbar-thumb {
@@ -43,3 +44,10 @@ body::-webkit-scrollbar-thumb {
 #map {
         height: 100%;
       }
+
+@media screen and (min-width: 960px) {
+    html {
+        margin-left: calc(100vw - 100%);
+        margin-right: 0;
+    }
+}
