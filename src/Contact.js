@@ -75,7 +75,10 @@ class Contact extends React.Component {
               <Card.Text>
                 We are located at 3905 Arbor Crest Way, Rockville, MD 20853. Drop by and see the merchandise!
               </Card.Text>
-              <Location />
+              <Row>
+                <Col><Location /></Col>
+              </Row>
+
             </Card.Body>
           </Card>
 

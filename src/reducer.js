@@ -9,7 +9,11 @@ const initState = {
     cell:""
   },
   order:[],
-  products:require('./product.json')
+  products:require('./product.json'),
+  admin: {
+    account:"test",
+    password:"test"
+  }
 }
 
 export default function reducer(state=initState, action) {

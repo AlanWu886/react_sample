@@ -17,7 +17,7 @@ class ItemCard extends React.Component {
         name: this.props.item.name,
         color: this.props.item.spec[0].color,
         price: this.props.item.spec[0].price,
-        size: "",
+        size: this.props.item.spec[0].size[0],
         amount: ""
       },
       showModal:false,
@@ -146,8 +146,8 @@ class ItemCard extends React.Component {
         let order = Object.assign({}, prevState.order);
         console.log(order[e.target.id]);
         if(order.color && e.target.id === "color") {
-          console.log(Object.keys(order));
-          Object.keys(order).filter(key => key != "id" && key!= "name").map(key => order[key]="")
+          
+
           console.log(order);
           order[e.target.id] = e.target.value
           order.price = this.props.item.spec.find(spec => {return spec.color === e.target.value}).price
@@ -171,7 +171,10 @@ class ItemCard extends React.Component {
       prevState => {
         let order = Object.assign({}, prevState.order);
         Object.keys(order).filter(key => key != "id" && key!= "name").map(key => order[key]="")
-        order.color =  Object.keys(this.props.item.spec[0].color)
+        order.color =  this.props.item.spec[0].color
+        order.price = this.props.item.spec[0].price
+        order.size = this.props.item.spec[0].size[0]
+        console.log(order, this.props.item.spec[0].color);
         return { order:order, validOrder:false }
       },
       ()=>{
@@ -257,14 +260,15 @@ class ItemCard extends React.Component {
 
                   </Card.Text>
                   <Row className="orderSelect">
-                    <Card.Footer  style={{width:"100%", padding:"5px 15px"}}>
+                    <Card.Footer  style={{width:"100%", padding:"5px"}}>
 
-                        <Form inline style={{float:"right"}}>
+                        <Form inline style={{float:"left"}}>
                           <Form.Group>
                             <Form.Label style={this.labelWidth} htmlFor="inlineFormCustomSelectPref">
                               MAP:
                             </Form.Label>
                             <span>{priceTag}</span>
+
                           </Form.Group>
                           <Form.Group>
                             <Form.Label style={this.labelWidth} htmlFor="inlineFormCustomSelectPref">
@@ -289,7 +293,7 @@ class ItemCard extends React.Component {
                             className="ml-2 mr-4"
                             value={this.state.order.size}
                             onChange={this.setOrder}>
-                              <option key="" value="">Choose...</option>
+
                               {sizeOptions}
                             </Form.Control>
                           </Form.Group>
@@ -313,14 +317,14 @@ class ItemCard extends React.Component {
                             </Form.Control>
 
                           </Form.Group>
-                          <Form.Group style={{float:"right"}}>
-                            <Form.Label  htmlFor="inlineFormCustomSelectPref">
-                              &nbsp;&nbsp;
-                            </Form.Label>
-                            <Button size="sm" onClick={this.resetOrder} variant="warning">Reset</Button>
-                            <Button size="sm" onClick={ ()=> this.addToCart(this.state.item.id)}  style={{marginLeft:"5px"}} disabled={!isValid}>Add to Cart</Button>
-                          </Form.Group>
+
+
+
                         </Form>
+                        <div style={{float:"right"}}>
+                          <Button size="sm" onClick={this.resetOrder} variant="warning">Reset</Button>
+                          <Button size="sm" onClick={ ()=> this.addToCart(this.state.item.id)}  style={{marginLeft:"5px"}} disabled={!isValid}>Add to Cart</Button>
+                        </div>
 
 
 

@@ -52,7 +52,7 @@ class App extends React.Component {
           {this.state.isLoading ?
             <div><LoadingPage /></div> :
             <Router>
-              <Header />
+              
               <Menu functionCallFromParent={this.menuSelected.bind(this)}/>
               <Main currentPage={this.state.selectedMenu}/>
               <Footer />

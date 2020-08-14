@@ -50,7 +50,7 @@ class Location extends React.Component {
     var popup = new mapboxgl.Popup({anchor:"top",className:"popup-home"})
     .setLngLat([this.state.lng, this.state.lat])
     .setHTML("<b>Supreme Sports Supply</b>")
-    .setMaxWidth("300px")
+    .setMaxWidth("430px")
     .addTo(map);
   }
 

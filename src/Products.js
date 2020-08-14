@@ -25,7 +25,7 @@ class Products extends React.Component {
   render() {
     console.log(this.props);
     const productItems = this.props.productList? this.props.productList.map(item=>
-      <Col key={item.id} style={{marginBottom:'20px'}} sm={12}><ItemCard key={item.id} item={item}/></Col>
+      <Col key={item.id} style={{marginBottom:'30px'}} sm={12}><ItemCard key={item.id} item={item}/></Col>
     ) : null
     return(
       <div>

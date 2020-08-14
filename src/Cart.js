@@ -70,7 +70,7 @@ class Cart extends React.Component {
       contactInfo += key + ": " + values[key] + "\n"
     })
     var body = "order info: \n" + orderList + "\n" + "contact info:\n" + contactInfo
-    window.open("mailto:ronney@supremesportssupply.com?subject=" + encodeURIComponent(subject) + "&body=" +encodeURIComponent(body))
+    window.open("mailto:sssinc855@cs.com?subject=" + encodeURIComponent(subject) + "&body=" +encodeURIComponent(body))
   }
 
   submitContact(values){

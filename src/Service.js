@@ -14,7 +14,7 @@ class Service extends React.Component {
     return(
       <div style={{"textAlign":"center"}}>
         <h3>Re-string:</h3>
-        Price include string & labor. Please add $12 for shipping.<br />
+        Price include string & labor. Please add $14 for shipping.<br />
         <Table striped bordered hover variant="dark" style={{maxWidth: "500px", opacity: "80%", margin:"auto"}}>
           <thead>
             <tr>
