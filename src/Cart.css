@@ -10,6 +10,10 @@
   box-shadow: 0 0 10px #00d0ff , 0 0 40px #00d0ff, 0 0 80px #00d0ff ;
 }
 
-.empty-cart {
-  transform: translate(-105px, 40px) !important;
+.even-cart {
+  transform: translate(calc(55px - 100%), 40px) !important;
+}
+
+.odd-cart {
+  transform: translate(calc(55px - 100%), 40px) !important;
 }

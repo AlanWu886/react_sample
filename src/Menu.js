@@ -75,7 +75,7 @@ class Menu extends React.Component {
 
     return(
       <div className="sticky">
-        <header style={{color:'white', margin:'0px', padding:'10px 0px 0px 10px'}}>
+        <header style={{color:'white', margin:'0px', margin:'10px'}}>
           <img src={require('./logo.jpg')} width="32" height="32"/> <span className="animate__animated animate__bounce"><b>Supreme Sports Supply - Badminton</b></span>
         </header>
         <Navbar bg="dark" variant="dark" expand="md" style={{opacity: '0.85', width:"100vw"}}>
@@ -88,7 +88,7 @@ class Menu extends React.Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        
+
 
 
 

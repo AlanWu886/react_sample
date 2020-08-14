@@ -127,7 +127,9 @@ class Cart extends React.Component {
     />
 
     const removeIconStyle = {float:'right',
-                            marginRight:'5px'
+                            marginRight:'5px',
+                            height:'75%',
+                            alignSelf:'center'
                            }
 
     const dropdownItemStyle = {padding:'5px',
@@ -143,6 +145,8 @@ class Cart extends React.Component {
       <Button size='sm' variant='danger' style={removeIconStyle} onClick={()=>this.removeFromCart(order)}>{removeIcon}</Button>
     </div> ) : <Dropdown.Item disabled>Empty Cart</Dropdown.Item>
 
+
+
     return(
 
       <div>
@@ -151,7 +155,7 @@ class Cart extends React.Component {
             <Dropdown.Toggle id="cart">
               {cartIcon}
             </Dropdown.Toggle>
-            <Dropdown.Menu id="cartMenu" className={this.props.order.length===0? "empty-cart" : ""} show={this.state.showCart} style={{marginRight:"100px"}}>
+            <Dropdown.Menu id="cartMenu" className={this.props.order.length%2 === 0? "even-cart" : "odd-cart"} show={this.state.showCart} style={{marginRight:"100px"}}>
               <Dropdown.Header>Order Details</Dropdown.Header>
               {orderItems}
               <Dropdown.Divider />
