@@ -47,6 +47,7 @@ class Cart extends React.Component {
     this.removeFromCart = this.removeFromCart.bind(this)
     this.submitContact = this.submitContact.bind(this)
     this.generateEmail = this.generateEmail.bind(this)
+    this.sendGridEmail = this.sendGridEmail.bind(this)
     this.calculatePrice = this.calculatePrice.bind(this)
 
   }
@@ -73,12 +74,30 @@ class Cart extends React.Component {
     window.open("mailto:sssinc855@cs.com?subject=" + encodeURIComponent(subject) + "&body=" +encodeURIComponent(body))
   }
 
+  sendGridEmail(values){
+    console.log(values["email"]);
+    const sgMail = require('@sendgrid/mail');
+    console.log(process.env.REACT_APP_SENDGRID_API_KEY);
+    sgMail.setApiKey(process.env.REACT_APP_SENDGRID_API_KEY);
+
+
+
+    const msg = {
+      to: 'mlwu860401@gmail.com',
+      from: 'mlwu860401@gmail.com',
+      subject: 'Sending with Twilio SendGrid is Fun',
+      text: 'and easy to do anywhere, even with Node.js',
+      html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+    };
+    sgMail.send(msg);
+  }
+
   submitContact(values){
     console.log(values);
     this.toggleDisplay("showNotification")
     this.toggleDisplay("showCheckOut")
-    this.generateEmail(values)
 
+    this.sendGridEmail(values)
     this.props.updateContact(values)
 
 
@@ -155,7 +174,7 @@ class Cart extends React.Component {
             <Dropdown.Toggle id="cart">
               {cartIcon}
             </Dropdown.Toggle>
-            <Dropdown.Menu id="cartMenu" className={this.props.order.length%2 === 0? "even-cart" : "odd-cart"} show={this.state.showCart} style={{marginRight:"100px"}}>
+            <Dropdown.Menu id="cartMenu" className= "cart" show={this.state.showCart} style={{marginRight:"100px"}}>
               <Dropdown.Header>Order Details</Dropdown.Header>
               {orderItems}
               <Dropdown.Divider />
@@ -252,11 +271,11 @@ class Cart extends React.Component {
         <Toast onClose={
         () => this.toggleDisplay("showNotification")}
         show={this.state.showNotification}
-        delay={5000}
+        delay={50000}
         autohide
         className="toastCustom"
         style={{
-          position: 'absolute',
+          position: 'fixed',
           bottom: "15px",
           right: "15px",
         }}

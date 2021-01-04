@@ -10,6 +10,7 @@ import Main from './Main'
 import Menu from './Menu'
 import Footer from './Footer'
 
+
 class App extends React.Component {
   constructor() {
     super()
@@ -46,13 +47,14 @@ class App extends React.Component {
   }
 
   render() {
+
     return(
       <div style={this.style}>
         <React.Fragment>
           {this.state.isLoading ?
             <div><LoadingPage /></div> :
             <Router>
-              
+
               <Menu functionCallFromParent={this.menuSelected.bind(this)}/>
               <Main currentPage={this.state.selectedMenu}/>
               <Footer />
