@@ -9,7 +9,7 @@ const initState = {
     cell:""
   },
   order:[],
-  products:require('./product.json'),
+  products:require('./productData/product.json'),
   admin: {
     account:"test",
     password:"test"

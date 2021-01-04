@@ -4,7 +4,7 @@ import './App.css';
 import {BrowserRouter as Router, Redirect} from 'react-router-dom'
 
 
-import LoadingPage from './LoadingPage'
+import LoadingPage from './components/LoadingPage'
 import Header from './Header'
 import Main from './Main'
 import Menu from './Menu'
