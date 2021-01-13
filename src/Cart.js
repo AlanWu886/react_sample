@@ -49,10 +49,26 @@ class Cart extends React.Component {
     this.generateEmail = this.generateEmail.bind(this)
     this.sendGridEmail = this.sendGridEmail.bind(this)
     this.calculatePrice = this.calculatePrice.bind(this)
+    this.sendEmail = this.sendEmail.bind(this)
+  }
+
+  sendEmail(email){
+    console.log(email);
+    fetch('/api/sendEmail', {
+        method: "POST",
+        mode: "cors",
+        // Adding body or contents to send
+        body:JSON.stringify(email),
+        headers: {"Content-type": "application/json; charset=UTF-8"}
+        // Adding headers to the request
+      })
+      .then(json => console.log(json))
+      .catch(err => console.log(err))
 
   }
 
   generateEmail(values){
+
     var subject = "order information - " + new Date().toLocaleString("en-US", {timeZone: "America/New_York"})
     var orderList = ""
     this.props.order.map(
@@ -71,7 +87,16 @@ class Cart extends React.Component {
       contactInfo += key + ": " + values[key] + "\n"
     })
     var body = "order info: \n" + orderList + "\n" + "contact info:\n" + contactInfo
-    window.open("mailto:sssinc855@cs.com?subject=" + encodeURIComponent(subject) + "&body=" +encodeURIComponent(body))
+    // window.open("mailto:sssinc855@cs.com?subject=" + encodeURIComponent(subject) + "&body=" +encodeURIComponent(body))
+    var emailContent = {
+      senderEmail: values.email,
+      senderName: values.name,
+      senderCell: values.cell,
+      subject: subject,
+      body: body
+    }
+
+    return emailContent
   }
 
   sendGridEmail(values){
@@ -97,7 +122,8 @@ class Cart extends React.Component {
     this.toggleDisplay("showNotification")
     this.toggleDisplay("showCheckOut")
 
-    this.generateEmail(values)
+
+    this.sendEmail(this.generateEmail(values))
     this.props.updateContact(values)
 
 
