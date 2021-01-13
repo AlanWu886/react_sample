@@ -10,15 +10,16 @@ import { Provider } from 'react-redux'
 import reducer from './reducer'
 const store = createStore(reducer)
 
+const mapbox_key = process.env.REACT_APP_MAPBOX_API_KEY
 
-mapboxgl.accessToken = 'pk.eyJ1IjoicmVhY3RzYW1wbGUiLCJhIjoiY2tjNmJ2cDB3MDdrNTJ4cGI0czg1bW1udSJ9.-x7UK4qYV_ZyELq5gXGNwA'
+mapboxgl.accessToken = mapbox_key
 
 ReactDOM.hydrate(
-  <React.StrictMode>
+
     <Provider store={store}>
        <App />
     </Provider>
-  </React.StrictMode>,
+  ,
   document.getElementById('root')
 );
 
