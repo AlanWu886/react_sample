@@ -1,22 +1,63 @@
 const express = require('express');
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
+const mongoose = require('mongoose');
+const router = express.Router();
+const User = require('./models/user');
+
 const path = require('path');
 const fs = require('fs');
 const bodyParser = require("body-parser");
+const cookieParser = require('cookie-parser')
 
 
-
-const app = express()
+const app = express();
 require('dotenv').config();
 // app.use(bodyParser.json());
 
+const port = process.env.PORT || 8000
+
+const store = new MongoDBStore({
+    uri: `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PW}@sssbadminton-test.ctpz7.mongodb.net/${process.env.MONGODB_DBNAME}?retryWrites=true&w=majority`,
+    collection: 'sessions'
+});
+
+app.use(session({
+    secret: 'nicerack',
+    resave: false,
+    saveUninitialized: false,
+    unset: 'destroy',
+    store: store,
+    name: 'session cookie name',
+    cookie: {
+      maxAge: 1000*60*60*2,
+      sameSite: false
+    }
+}));
+
+const mongoDBURL = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PW}@sssbadminton-test.ctpz7.mongodb.net/${process.env.MONGODB_DBNAME}?retryWrites=true&w=majority`
+mongoose.connect(mongoDBURL, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
+  .then(result => app.listen(port, ()=>{
+    console.log(`server at http://localhost:${port}`);
+  }))
+  .catch(err =>console.log(err));
+
+
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cookieParser())
 
 app.use(express.static(path.join(__dirname, '../build')));
+app.use("/api/users", require("./routes/userApi"));
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
+
+app.get('*', function(req, res) {
+  res.sendFile('index.html', {root: path.join(__dirname, '../build/')});
+})
 
 app.post('/api/sendEmail', function (req, res) {
   console.log("sending email...");
@@ -92,9 +133,3 @@ app.post('/api/sendEmail', function (req, res) {
 //   res.header("Access-Control-Allow-Origin", "*");
 //   next();
 // });
-
-const port = process.env.PORT || 8000
-app.listen(port, ()=>{
-
-  console.log(`server at http://localhost:${port}`);
-})

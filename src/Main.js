@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Container, Row, Col } from 'react-bootstrap';
 import {Switch, Route, Redirect} from 'react-router-dom'
 import {CSSTransition, TransitionGroup, } from 'react-transition-group';
+import axios from 'axios'
 
 import Cart from './Cart'
 import Home from './Home'
@@ -10,7 +11,8 @@ import Contact from './Contact'
 import About from './About'
 import Footer from './Footer'
 import Service from './Service'
-import InventoryTable from './InventoryTable'
+import Login from './Login'
+import Inventory from './Inventory'
 
 import './Main.css'
 
@@ -20,7 +22,7 @@ class Main extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      count: 3,
+      isSignin: false
 
     }
 
@@ -29,20 +31,47 @@ class Main extends React.Component {
       margin:'0 40px 0 20px'
     }
 
-
-
-    this.increOne = this.increOne.bind(this)
-
+    this.checkAuth = this.checkAuth.bind(this)
+    this.getAuth = this.getAuth.bind(this)
   }
 
-  increOne() {
-    this.setState(xyz => {
-      console.log(xyz);
-      return{
-        count: xyz.count + 1
-      }
+  componentDidMount(){
+    this.checkAuth()
+  }
 
-    })
+  getAuth() {
+    console.log(localStorage);
+  }
+
+
+
+  checkAuth(){
+    var check;
+    fetch('/api/users/authchecker', {
+        method: "GET",
+        mode: "cors",
+        // Adding body or contents to send
+        headers: {"Content-type": "charset=UTF-8"}
+        // Adding headers to the request
+      })
+      .then(res => {
+        if (res.ok) {
+          console.log('user is logged in', res);
+          this.setState(state => {
+            return{
+              isSignin: true
+            }
+          })
+        } else {
+          console.log('Redirect to login page...');
+
+        }
+        check = res.ok
+
+      })
+      .then(() => {return check})
+
+
 
   }
 
@@ -70,7 +99,10 @@ class Main extends React.Component {
                     <Route exact path="/service" render={(props) => <Service {...props} productList={this.props.products.string} />}></Route>
                     <Route exact path="/contact" component={Contact}></Route>
                     <Route exact path="/about" component={About}></Route>
-                    <Route exact path="/test" component={InventoryTable}></Route>
+                    <Route exact path="/login" component={Login}></Route>
+                    <Route exact path="/inventory" render={
+                      (props) => <Inventory productList={this.props.products} isLogIn={this.state.isSignin}/>
+                    }></Route>
                     <Redirect from="*" to={"/home"} />
                   </Switch>
                 </CSSTransition>

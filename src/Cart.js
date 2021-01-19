@@ -240,7 +240,7 @@ class Cart extends React.Component {
             }) => (
 
               <Form noValidate onSubmit={handleSubmit} style={{marginTop:"10px"}}>
-                <Form.Group controlId="formName">
+                <Form.Group controlId="formName" style={{width:'200px'}}>
                   <Form.Label>Name</Form.Label>
                   <Form.Control
                   type="name"
@@ -249,6 +249,7 @@ class Cart extends React.Component {
                   value={values.name}
                   onChange={handleChange}
                   isInvalid={!!errors.name}
+
                   />
                   <Form.Control.Feedback type="invalid">
                     {errors.name}
