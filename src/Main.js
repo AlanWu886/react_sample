@@ -13,6 +13,7 @@ import Footer from './Footer'
 import Service from './Service'
 import Login from './Login'
 import Inventory from './Inventory'
+import ProtectedRoute from './components/ProtectedRoute'
 
 import './Main.css'
 
@@ -22,7 +23,8 @@ class Main extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isSignin: false
+      isLoggedIn: false,
+      isLoaded: false
 
     }
 
@@ -59,17 +61,24 @@ class Main extends React.Component {
           console.log('user is logged in', res);
           this.setState(state => {
             return{
-              isSignin: true
+              isLoggedIn: true,
+              isLoaded: true
             }
           })
+
         } else {
+          this.setState(state => {
+            return{
+              isLoggedIn: false,
+              isLoaded: true
+            }
+          })
           console.log('Redirect to login page...');
-
         }
-        check = res.ok
-
       })
-      .then(() => {return check})
+      .then(() => {
+        console.log(this.state);
+      })
 
 
 
@@ -100,9 +109,7 @@ class Main extends React.Component {
                     <Route exact path="/contact" component={Contact}></Route>
                     <Route exact path="/about" component={About}></Route>
                     <Route exact path="/login" component={Login}></Route>
-                    <Route exact path="/inventory" render={
-                      (props) => <Inventory productList={this.props.products} isLogIn={this.state.isSignin}/>
-                    }></Route>
+                    <ProtectedRoute exact path='/inventory' isLoaded={this.state.isLoaded} isLoggedIn={this.state.isLoggedIn} component={Inventory} />
                     <Redirect from="*" to={"/home"} />
                   </Switch>
                 </CSSTransition>

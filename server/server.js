@@ -52,6 +52,7 @@ app.use(express.static(path.join(__dirname, '../build')));
 app.use("/api/users", require("./routes/userApi"));
 
 app.get('/', function (req, res) {
+  console.log(req.cookies);
   res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
 

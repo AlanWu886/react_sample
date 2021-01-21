@@ -18,8 +18,8 @@ function Login() {
   const [loginForm, setForm] = useState(initForm);
 
   useEffect(() => {
-    console.log(loginForm);
-  });
+    console.log(document.cookie);
+  },[]);
 
 
   const authApi = (values) => {
@@ -37,7 +37,14 @@ function Login() {
       })
       .then(res => { return res.json()})
       .then(res => {
-        console.log('set localStorage', res)
+        // var expire = new Date();
+        // var minutes = 120;
+        // expire.setTime(expire.getTime() + (minutes * 60 * 1000));
+        //
+        // document.cookie = "session=" + res.session + "; "
+        // document.cookie = "expires=" + expire.toUTCString() + ";"
+        // console.log('set localStorage', res)
+        // console.log("cookie:", document.cookie);
         // localStorage.setItem('user', JSON.stringify(res.sessUser))
       })
       .catch(err => console.log(err))

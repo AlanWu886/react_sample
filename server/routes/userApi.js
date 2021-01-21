@@ -81,8 +81,9 @@ router.post('/login', (req, res)=>{
       }
 
       req.session.user = sessUser; // how does this autosave to store?
+      console.log('cookies:',req.session.cookie._expires);
 
-      res.json({ msg: " Logged In Successfully", sessUser });
+      res.json({ msg: " Logged In Successfully", sessUser, session: req.sessionID, expire:req.session.cookie._expires});
     })
     .catch(err=>console.log(err))
 

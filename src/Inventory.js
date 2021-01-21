@@ -34,8 +34,6 @@ function Inventory (props){
 
     </div>
   )
-
-
 }
 
 export default Inventory
