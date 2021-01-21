@@ -13,3 +13,11 @@
 .cart {
   transform: translate(calc(55px - 100%), 40px) !important;
 }
+
+.sticky-cart {
+  z-index: 10;
+  float: right;
+  opacity: 1;
+  position: fixed;
+  right: 20px;
+}
