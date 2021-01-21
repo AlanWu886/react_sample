@@ -19,11 +19,3 @@
   opacity: 0;
 
 }
-
-.sticky-cart {
-  z-index: 10;
-  float: right;
-  opacity: 1;
-  position: fixed;
-  right: 20px;
-}

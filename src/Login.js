@@ -13,10 +13,7 @@ const schema = yup.object({
 });
 
 function Login() {
-  const initForm = {name:'', password: ''}
-  const [isLogIn, setLogin] = useState(false);
-  const [loginForm, setForm] = useState(initForm);
-
+  var loginForm = {name:'', password:''}
   useEffect(() => {
     console.log(document.cookie);
   },[]);
@@ -35,7 +32,8 @@ function Login() {
         headers: {"Content-type": "application/json; charset=UTF-8"}
         // Adding headers to the request
       })
-      .then(res => { return res.json()})
+      .then(res => {
+        return res.json()})
       .then(res => {
         // var expire = new Date();
         // var minutes = 120;
@@ -46,6 +44,9 @@ function Login() {
         // console.log('set localStorage', res)
         // console.log("cookie:", document.cookie);
         // localStorage.setItem('user', JSON.stringify(res.sessUser))
+        if(res.sessUser) {
+          document.location.href = '/inventory'
+        }
       })
       .catch(err => console.log(err))
  };

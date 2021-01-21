@@ -1,8 +1,12 @@
 import React from 'react'
 import ItemCard from './components/ItemCard'
+import Cart from './Cart'
+import './Cart.css'
 
 import {Row, Col} from 'react-bootstrap'
 import { connect } from 'react-redux'
+
+
 
 class Products extends React.Component {
   constructor(props) {
@@ -29,6 +33,9 @@ class Products extends React.Component {
     ) : null
     return(
       <div>
+        <span className="sticky-cart">
+          <Cart />
+        </span>
         <h3 style={{textTransform: 'capitalize'}}>{this.props.title}</h3>
         <Row>
           {productItems}

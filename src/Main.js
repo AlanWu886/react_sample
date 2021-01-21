@@ -4,7 +4,6 @@ import {Switch, Route, Redirect} from 'react-router-dom'
 import {CSSTransition, TransitionGroup, } from 'react-transition-group';
 import axios from 'axios'
 
-import Cart from './Cart'
 import Home from './Home'
 import Products from './Products'
 import Contact from './Contact'
@@ -94,9 +93,6 @@ class Main extends React.Component {
       <>
         <div style={{paddingTop:'150px', width:'100%', flex: "1 0 auto"}}>
           <Container>
-            <span className="sticky-cart">
-              <Cart />
-            </span>
             <Route render={({location})=>(
               <TransitionGroup>
                 <CSSTransition key={location.key} timeout={300} classNames="fade">
