@@ -50,11 +50,12 @@ app.use(cookieParser())
 
 app.use(express.static(path.join(__dirname, '../build')));
 app.use("/api/users", require("./routes/userApi"));
+app.use("/api/products", require("./routes/productApi"));
 
-app.get('/', function (req, res) {
-  console.log(req.cookies);
-  res.sendFile(path.join(__dirname, '../build', 'index.html'));
-});
+// app.get('/', function (req, res) {
+//   console.log(req.cookies);
+//   res.sendFile(path.join(__dirname, '../build', 'index.html'));
+// });
 
 app.get('*', function(req, res) {
   res.sendFile('index.html', {root: path.join(__dirname, '../build/')});
