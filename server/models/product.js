@@ -2,7 +2,10 @@ const mongoose =  require('mongoose');
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
-
+  category:{
+    type: String,
+    required: true
+  },
   name:{
     type: String,
     required: true,
@@ -16,8 +19,10 @@ const productSchema = new Schema({
     type: String
   },
   spec:{
-    type: Array,
-    required: true
+    type: Array
+  },
+  image:{
+    type: Array
   }
 },
 { timestamp:true });
