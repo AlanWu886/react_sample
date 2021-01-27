@@ -1,8 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import {BrowserRouter as Router, Redirect} from 'react-router-dom'
-
+import { connect } from 'react-redux'
+import * as actions from './actionLookup'
+import {initProducts} from './action'
+import axios from 'axios'
 
 import LoadingPage from './components/LoadingPage'
 import Header from './Header'
@@ -12,11 +14,12 @@ import Footer from './Footer'
 
 
 class App extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
       isLoading: true,
+      productList: null,
       selectedMenu: window.location.pathname.substring(1)
     }
 
@@ -26,15 +29,33 @@ class App extends React.Component {
       flexDirection: "column"
 
     }
+    this.iniProdcutList = this.iniProdcutList.bind(this)
+  }
+
+  iniProdcutList(products) {
+    this.props.initProducts(products)
+    console.log('init product list...');
   }
 
   componentDidMount() {
-    setTimeout(()=>{
-      this.setState({
-        isLoading: false
-      })
-    }, 500)
-
+    axios.get('/api/products/getProducts')
+    .then(res=>{
+      if(res.status === 200) {
+        this.props.initProducts(res.data.data)
+        console.log(res)
+        this.setState(
+          () => {
+            return{
+              isLoading: false,
+              productList: res.data.data
+            }
+          }, () => {
+            console.log(this.state,this.props)
+          }
+        )
+      }
+    })
+    .catch(err=>console.log(err))
 
   }
 
@@ -67,4 +88,16 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return state
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    initProducts: (products) => {
+      console.log("init products..")
+      dispatch(initProducts(products))}
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

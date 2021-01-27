@@ -6,7 +6,38 @@ const fs = require('fs');
 const Product = require("../models/product"); // User model
 
 //change to post
-router.get("/create", (req, res) => {
+router.post("/create", (req, res) => {
+  const {category, name, description, memo, spec} = req.body
+  if (!name || !category) {
+    return res.status(400).json({ msg: "Please enter all required fields" });
+  }
+
+  Product.findOne({name:name})
+  .then(product =>{
+    if (product) {
+      return res.status(400).json({ msg: "Product already exsists" })
+    }
+
+    const newProduct = {
+      category: category,
+      name:name,
+      description:description,
+      memo:memo,
+      spec:spec
+    }
+
+    newProduct.save()
+    .then(()=>{
+      return res.status(200).json({ msg: "Product inserted", product:newProduct })
+    })
+    .catch(err=>console.log(err))
+  })
+  .catch(err=>console.log(err))
+
+})
+
+router.get("/createMany", (req, res) => {
+  const {category, name, description, memo, spec} = req.body
   const listPath = __dirname + '/../../src/productData/product.json'
   const productList = JSON.parse(fs.readFileSync(listPath, 'utf-8'));
   // console.log(productList);
@@ -38,6 +69,7 @@ router.get("/create", (req, res) => {
 
 })
 
+
 // change to post
 router.get("/update", (req, res) => {
   Product.updateMany({}, {category: 'string'})
@@ -52,6 +84,7 @@ router.get("/update", (req, res) => {
 })
 
 router.get("/getProducts", (req, res) => {
+  
   Product.find({})
   .then((data)=>{
       console.log(data);

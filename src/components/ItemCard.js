@@ -232,6 +232,8 @@ class ItemCard extends React.Component {
 
     const isValid = this.state.validOrder
 
+    const underConstruction = './productImage/under-construction.svg'
+
     console.log(this.props);
     return(
 
@@ -242,7 +244,7 @@ class ItemCard extends React.Component {
             <Card.Body >
               <Row>
 
-                <Image style={{ cursor: "zoom-in" }} onClick={()=>this.showImg()} className='product-image' src={require(`${this.state.item.image[0].path}`)} />
+                <Image style={{ cursor: "zoom-in" }} onClick={()=>this.showImg()} className='product-image' src={this.state.item.image.length!=0? require(`${this.state.item.image[0].path}`): require(`${underConstruction}`)} />
                 <Modal centered show={this.state.showModal} onHide={()=>this.closeImg()} >
 
                   <Modal.Body style={{backgroundColor:"lightslategrey"}}>
@@ -341,8 +343,6 @@ class ItemCard extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("loading item");
-
   return {
     order: state.order
   }

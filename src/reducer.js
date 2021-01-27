@@ -10,10 +10,7 @@ const initState = {
   },
   order:[],
   products:require('./productData/product.json'),
-  admin: {
-    account:"test",
-    password:"test"
-  }
+  productList:[]
 }
 
 export default function reducer(state=initState, action) {
@@ -37,6 +34,11 @@ export default function reducer(state=initState, action) {
       case actions.UPDATE_CONTACT:
         console.log(action,draft);
         draft.buyer = action.buyer
+        break
+
+      case actions.INIT_PRODUCTS:
+        console.log(action,draft);
+        draft.productList = action.products
         break
 
       default:

@@ -20,3 +20,10 @@ export const updateContact = (buyer) => {
     buyer
   }
 }
+
+export const initProducts = (products) => {
+  return {
+    type: actions.INIT_PRODUCTS,
+    products
+  }
+}

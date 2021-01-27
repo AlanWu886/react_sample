@@ -50,12 +50,12 @@ class Menu extends React.Component {
   render() {
     const menuOptions = [
       {name:'home', path: ''},
-      {name:'racquets', path: ''},
-      {name:'shuttlecocks', path: ''},
+      {name:'racquet', path: ''},
+      {name:'shuttlecock', path: ''},
       {name:'string', path: ''},
       {name:'footwear', path: ''},
-      {name:'bags', path: ''},
-      {name:'accessories', path: ''},
+      {name:'bag', path: ''},
+      {name:'accessory', path: ''},
       {name:'service', path: ''},
       {name:'contact', path: ''},
       {name:'about', path: ''},

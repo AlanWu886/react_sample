@@ -86,6 +86,10 @@ class Main extends React.Component {
   render() {
     console.log(this.state)
     console.log(this.props);
+    const categories = [...new Set(this.props.productList.map(item => item.category))]
+    console.log(categories);
+    const categorizedProducts = this.props.productList.filter(o=>Object.values(o).includes(this.props.currentPage))
+    console.log(categorizedProducts);
     const currentPage = window.location.pathname.substring(1)
     console.log(currentPage);
     return(
@@ -98,10 +102,10 @@ class Main extends React.Component {
                 <CSSTransition key={location.key} timeout={300} classNames="fade">
                   <Switch location={location}>
                     <Route exact path="/home" component={Home}/>
-                    <Route exact path="/racquets" render={(props) => <Products {...props} productList={this.props.products[this.props.currentPage]} title={this.props.currentPage}/>}></Route>
-                    <Route exact path="/footwear" render={(props) => <Products {...props} productList={this.props.products[this.props.currentPage]} title={this.props.currentPage}/>}></Route>
-                    <Route exact path="/bags" render={(props) => <Products {...props} productList={this.props.products[this.props.currentPage]} title={this.props.currentPage}/>}></Route>
-                    <Route exact path="/service" render={(props) => <Service {...props} productList={this.props.products.string} />}></Route>
+                    <Route exact path="/racquet" render={(props) => <Products {...props} categorizedProducts={categorizedProducts} title={this.props.currentPage}/>}></Route>
+                    <Route exact path="/footwear" render={(props) => <Products {...props} categorizedProducts={categorizedProducts} title={this.props.currentPage}/>}></Route>
+                    <Route exact path="/bag" render={(props) => <Products {...props} categorizedProducts={categorizedProducts} title={this.props.currentPage}/>}></Route>
+                    <Route exact path="/service" render={(props) => <Service {...props} categorizedProducts={this.props.productList.filter(o=>Object.values(o).includes('string'))} />}></Route>
                     <Route exact path="/contact" component={Contact}></Route>
                     <Route exact path="/about" component={About}></Route>
                     <Route exact path="/login" component={Login}></Route>
