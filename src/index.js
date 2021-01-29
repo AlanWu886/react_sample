@@ -16,9 +16,9 @@ mapboxgl.accessToken = mapbox_key
 
 ReactDOM.hydrate(
 
-    <Provider store={store}>
-       <App />
-    </Provider>
+  <Provider store={store}>
+     <App />
+  </Provider>
   ,
   document.getElementById('root')
 );

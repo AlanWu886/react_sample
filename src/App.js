@@ -18,7 +18,7 @@ class App extends React.Component {
     super(props)
 
     this.state = {
-      isLoading: true,
+      isLoaded: true, //change to false
       productList: null,
       selectedMenu: window.location.pathname.substring(1)
     }
@@ -46,7 +46,7 @@ class App extends React.Component {
         this.setState(
           () => {
             return{
-              isLoading: false,
+              isLoaded: true,
               productList: res.data.data
             }
           }, () => {
@@ -72,7 +72,7 @@ class App extends React.Component {
     return(
       <div style={this.style}>
         <React.Fragment>
-          {this.state.isLoading ?
+          {!this.state.isLoaded ?
             <div><LoadingPage /></div> :
             <Router>
 

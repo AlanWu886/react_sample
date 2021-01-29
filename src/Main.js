@@ -22,8 +22,8 @@ class Main extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isLoggedIn: false,
-      isLoaded: false
+      isLoggedIn: true,
+      isLoaded: true
 
     }
 
@@ -87,7 +87,6 @@ class Main extends React.Component {
     console.log(this.state)
     console.log(this.props);
     const categories = [...new Set(this.props.productList.map(item => item.category))]
-    console.log(categories);
     const categorizedProducts = this.props.productList.filter(o=>Object.values(o).includes(this.props.currentPage))
     console.log(categorizedProducts);
     const currentPage = window.location.pathname.substring(1)
@@ -109,7 +108,7 @@ class Main extends React.Component {
                     <Route exact path="/contact" component={Contact}></Route>
                     <Route exact path="/about" component={About}></Route>
                     <Route exact path="/login" component={Login}></Route>
-                    <ProtectedRoute exact path='/inventory' isLoaded={this.state.isLoaded} isLoggedIn={this.state.isLoggedIn} component={Inventory} />
+                    <ProtectedRoute exact path='/inventory' isLoaded={this.state.isLoaded} isLoggedIn={this.state.isLoggedIn} productList={this.props.products} component={Inventory} /> //change back to prodcutlist
                     <Redirect from="*" to={"/home"} />
                   </Switch>
                 </CSSTransition>
