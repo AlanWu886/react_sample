@@ -84,10 +84,10 @@ router.get("/update", (req, res) => {
 })
 
 router.get("/getProducts", (req, res) => {
-  
+
   Product.find({})
   .then((data)=>{
-      console.log(data);
+      // console.log(data);
 
       return res.status(200).json({status:'success', data:data})  // Success
   }).catch(function(error){

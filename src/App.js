@@ -11,7 +11,11 @@ import Header from './Header'
 import Main from './Main'
 import Menu from './Menu'
 import Footer from './Footer'
+import ChatWindowWithSocket from './components/Chat/ChatWindowWithSocket'
+import SocketContext from './components/SocketContext'
 
+import io from "socket.io-client";
+const socket = io()
 
 class App extends React.Component {
   constructor(props) {
@@ -79,9 +83,13 @@ class App extends React.Component {
               <Menu functionCallFromParent={this.menuSelected.bind(this)}/>
               <Main currentPage={this.state.selectedMenu}/>
               <Footer />
+              <SocketContext.Provider value={socket}>
+               <span style={{position:"fixed", right:"20px", bottom:"20px"}}><ChatWindowWithSocket /></span>
+              </SocketContext.Provider>
             </Router>
           }
         </React.Fragment>
+
 
       </div>
     )

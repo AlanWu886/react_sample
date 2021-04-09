@@ -9,7 +9,7 @@ const initState = {
     cell:""
   },
   order:[],
-  products:require('./productData/product.json'),
+  products:require('./productData/productMongo.json'),
   productList:[]
 }
 
@@ -37,7 +37,7 @@ export default function reducer(state=initState, action) {
         break
 
       case actions.INIT_PRODUCTS:
-        console.log(action,draft);
+        // console.log(action,draft);
         draft.productList = action.products
         break
 

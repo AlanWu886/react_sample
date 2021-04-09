@@ -1,6 +1,7 @@
-import React from 'react'
-import { useTable, usePagination } from 'react-table'
-
+import React, { useState, useEffect } from 'react';
+import { useTable, useGlobalFilter, useAsyncDebounce, usePagination} from 'react-table'
+import {Button, Table} from 'react-bootstrap'
+import FontAwesome from 'react-fontawesome'
 
 
 // Create an editable cell renderer
@@ -11,7 +12,7 @@ const EditableCell = ({
   updateMyData, // This is a custom function that we supplied to our table instance
 }) => {
   // We need to keep and update the state of the cell normally
-  const [value, setValue] = React.useState(initialValue)
+  const [value, setValue] = useState(initialValue)
 
   const onChange = e => {
     setValue(e.target.value)
@@ -23,16 +24,50 @@ const EditableCell = ({
   }
 
   // If the initialValue is changed external, sync it up with our state
-  React.useEffect(() => {
+  useEffect(() => {
     setValue(initialValue)
   }, [initialValue])
 
-  return <input value={value} onChange={onChange} onBlur={onBlur} />
+  return (
+    <span>{value}</span>
+  )
 }
 
 // Set our editable cell renderer as the default Cell renderer
 const defaultColumn = {
   Cell: EditableCell,
+}
+
+
+
+function GlobalFilter({
+  preGlobalFilteredRows,
+  globalFilter,
+  setGlobalFilter,
+}) {
+  const count = preGlobalFilteredRows.length
+  const [value, setValue] = React.useState(globalFilter)
+  const onChange = useAsyncDebounce(value => {
+    setGlobalFilter(value || undefined)
+  }, 200)
+
+  return (
+    <span>
+      Search:{' '}
+      <input
+        value={value || ""}
+        onChange={e => {
+          setValue(e.target.value);
+          onChange(e.target.value);
+        }}
+        placeholder={`${count} records...`}
+        style={{
+          fontSize: '1.1rem',
+          border: '0',
+        }}
+      />
+    </span>
+  )
 }
 
 // Be sure to pass our updateMyData and the skipPageReset option
@@ -45,6 +80,8 @@ function InventoryTable({ columns, data, updateMyData, skipPageReset }) {
     getTableBodyProps,
     headerGroups,
     prepareRow,
+    preGlobalFilteredRows,
+    setGlobalFilter,
     page,
     canPreviousPage,
     canNextPage,
@@ -54,12 +91,13 @@ function InventoryTable({ columns, data, updateMyData, skipPageReset }) {
     nextPage,
     previousPage,
     setPageSize,
-    state: { pageIndex, pageSize },
+
+    state: { pageIndex, pageSize, globalFilter },
   } = useTable(
     {
       columns,
       data,
-      defaultColumn,
+
       // use the skipPageReset option to disable page resetting temporarily
       autoResetPage: !skipPageReset,
       // updateMyData isn't part of the API, but
@@ -69,13 +107,21 @@ function InventoryTable({ columns, data, updateMyData, skipPageReset }) {
       // cell renderer!
       updateMyData,
     },
+    useGlobalFilter,
     usePagination
+
   )
 
   // Render the UI for your table
   return (
     <>
-      <table {...getTableProps()}>
+
+      <GlobalFilter
+              preGlobalFilteredRows={preGlobalFilteredRows}
+              globalFilter={globalFilter}
+              setGlobalFilter={setGlobalFilter}
+            />
+      <Table {...getTableProps()} style={{color:'white',backgroundColor:'black'}}>
         <thead>
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
@@ -91,13 +137,13 @@ function InventoryTable({ columns, data, updateMyData, skipPageReset }) {
             return (
               <tr {...row.getRowProps()}>
                 {row.cells.map(cell => {
-                  return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                  return <td {...cell.getCellProps()} style={{verticalAlign: "middle"}}>{cell.render('Cell')}</td>
                 })}
               </tr>
             )
           })}
         </tbody>
-      </table>
+      </Table>
       <div className="pagination">
         <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
           {'<<'}

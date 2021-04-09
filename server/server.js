@@ -1,4 +1,7 @@
 const express = require('express');
+const app = express();
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const mongoose = require('mongoose');
@@ -11,11 +14,20 @@ const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser')
 
 
-const app = express();
+
+
 require('dotenv').config();
 // app.use(bodyParser.json());
 
 const port = process.env.PORT || 8000
+
+io.on('connection', socket => {
+  console.log("new connection. current connection count:", io.engine.clientsCount, " at", socket.id);
+  socket.on('message', ({ chatUserName, chatText }) => {
+    console.log(chatUserName, chatText);
+    io.emit('message', { chatUserName, chatText })
+  })
+})
 
 const store = new MongoDBStore({
     uri: `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PW}@sssbadminton-test.ctpz7.mongodb.net/${process.env.MONGODB_DBNAME}?retryWrites=true&w=majority`,
@@ -37,9 +49,10 @@ app.use(session({
 
 const mongoDBURL = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PW}@sssbadminton-test.ctpz7.mongodb.net/${process.env.MONGODB_DBNAME}?retryWrites=true&w=majority`
 mongoose.connect(mongoDBURL, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
-  .then(result => app.listen(port, ()=>{
-    console.log(`server at http://localhost:${port}`);
-  }))
+  // .then(result => app.listen(port, ()=>{
+  //   console.log(`server at http://localhost:${port}`);
+  // }))
+  .then(() => console.log('MongoDB Connected...'))
   .catch(err =>console.log(err));
 
 
@@ -95,6 +108,10 @@ app.post('/api/sendEmail', function (req, res) {
       console.log(err.statusCode)
     })
   res.end();
+});
+
+http.listen(port, () => {
+  console.log(`Server Running at ${port}`)
 });
 
 // SSR

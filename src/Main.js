@@ -14,6 +14,7 @@ import Login from './Login'
 import Inventory from './Inventory'
 import ProtectedRoute from './components/ProtectedRoute'
 
+
 import './Main.css'
 
 import { connect } from 'react-redux'
@@ -23,7 +24,8 @@ class Main extends React.Component {
     super(props)
     this.state = {
       isLoggedIn: true,
-      isLoaded: true
+      isLoaded: true,
+      showChatWindow: false
 
     }
 
@@ -34,9 +36,12 @@ class Main extends React.Component {
 
     this.checkAuth = this.checkAuth.bind(this)
     this.getAuth = this.getAuth.bind(this)
+    this.toggleDisplay = this.toggleDisplay.bind(this)
   }
 
   componentDidMount(){
+    console.log(this.props.products);
+    this.props.products.forEach(element => console.log(element));
     this.checkAuth()
   }
 
@@ -68,7 +73,7 @@ class Main extends React.Component {
         } else {
           this.setState(state => {
             return{
-              isLoggedIn: false,
+              isLoggedIn: true, //change back
               isLoaded: true
             }
           })
@@ -81,6 +86,18 @@ class Main extends React.Component {
 
 
 
+  }
+
+  toggleDisplay(target){
+    console.log(target);
+    this.setState(
+      prevState=> {
+        console.log(prevState);
+        return {[target]:!prevState[target]}
+      }, ()=>{
+        console.log(this.state[target]);
+      }
+    )
   }
 
   render() {
@@ -115,7 +132,7 @@ class Main extends React.Component {
               </TransitionGroup>
             )}>
             </Route>
-
+            
           </Container>
 
         </div>
